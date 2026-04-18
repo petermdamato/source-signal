@@ -1,18 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  /* Primary palette */
-  --color-primary: #2C4C5C;
+  /* Brand */
+  --color-primary: #2c4c5c;
   --color-primary-dark: #1e3642;
-  --color-primary-mid: #6C8494;
-  --color-surface: #B8BFC1;
+  --color-primary-mid: #6c8494;
+  --color-surface: #b8bfc1;
   --color-accent-yellow: #d4a017;
-  --color-error: #E05A48;
-  /* Semantic */
-  --background: #f4f7f9;
-  --foreground: #2C4C5C;
+  --color-error: #e05a48;
+  /* Surfaces */
+  --background: #eef2f7;
+  --foreground: #2c4c5c;
   --card: #ffffff;
-  --border: #6C8494;
+  --border: color-mix(in srgb, var(--color-primary-mid) 32%, transparent);
+  --muted-foreground: #5a6b7a;
+  --header-bg: color-mix(in srgb, #ffffff 88%, var(--background) 12%);
+  --footer-bg: #e4eaf1;
+  --footer-foreground: #4a5d6c;
+  --ring: color-mix(in srgb, var(--color-primary-mid) 45%, transparent);
+  /* Hero band (light editorial, not solid navy) */
+  --hero-gradient: linear-gradient(
+    160deg,
+    #f7f9fc 0%,
+    #eef3f9 38%,
+    #e6eef6 72%,
+    #dfe8f0 100%
+  );
+  --hero-accent: var(--color-accent-yellow);
+  --hero-border: color-mix(in srgb, var(--color-primary-mid) 22%, transparent);
 }
 
 @theme inline {
@@ -22,10 +37,13 @@
   --color-primary-dark: var(--color-primary-dark);
   --color-primary-mid: var(--color-primary-mid);
   --color-surface: var(--color-surface);
+  --color-accent: var(--color-accent-yellow);
   --color-accent-yellow: var(--color-accent-yellow);
   --color-error: var(--color-error);
   --color-card: var(--card);
   --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary-foreground: #ffffff;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -39,6 +57,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Home hero — light band per wireframe */
+.home-hero {
+  background: var(--hero-gradient);
+  border-bottom: 1px solid var(--hero-border);
+  color: var(--foreground);
+}
+
+.home-hero-lead {
+  color: var(--muted-foreground);
 }
 
 /* Flip card for sign in / sign up */

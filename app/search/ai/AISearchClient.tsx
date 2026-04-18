@@ -14,11 +14,11 @@ const INITIAL_ASSISTANT = "What are you searching for?";
 
 function BouncingDots() {
   return (
-    <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-[#EAF0F4] px-4 py-3">
+    <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-primary/[0.07] px-4 py-3">
       {[0, 1, 2].map((i) => (
         <span
           key={i}
-          className="inline-block h-1.5 w-1.5 rounded-full bg-[#6C8494] animate-bounce"
+          className="inline-block h-1.5 w-1.5 animate-bounce rounded-full bg-primary-mid/70"
           style={{ animationDelay: `${i * 150}ms`, animationDuration: "0.7s" }}
         />
       ))}
@@ -140,10 +140,10 @@ export function AISearchClient() {
 
       <div className="space-y-6">
         {/* Chat panel */}
-        <div className="flex flex-col overflow-hidden rounded-2xl border border-[#6C8494]/25 bg-white shadow-sm">
-          <div className="border-b border-[#6C8494]/15 bg-[#EAF0F4] px-5 py-4 sm:px-6">
-            <p className="text-sm font-medium text-[#2C4C5C]">Guided vendor search</p>
-            <p className="mt-1 text-xs text-[#6C8494]">
+        <div className="flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+          <div className="border-b border-border bg-primary/[0.06] px-5 py-4 sm:px-6">
+            <p className="text-sm font-medium text-primary">Guided vendor search</p>
+            <p className="mt-1 text-xs text-muted-foreground">
               Share details in your own words. You can view matches after two answers.
             </p>
           </div>
@@ -157,14 +157,14 @@ export function AISearchClient() {
                 <div
                   className={
                     msg.role === "user"
-                      ? "max-w-[86%] rounded-2xl rounded-br-md bg-[#2C4C5C]/12 px-4 py-3 text-sm leading-relaxed text-[#2C4C5C] sm:text-[15px]"
-                      : "max-w-[86%] rounded-2xl rounded-bl-md bg-[#EAF0F4] px-4 py-3 text-sm leading-relaxed text-[#2C4C5C] sm:text-[15px]"
+                      ? "max-w-[86%] rounded-2xl rounded-br-md bg-primary/10 px-4 py-3 text-sm leading-relaxed text-primary sm:text-[15px]"
+                      : "max-w-[86%] rounded-2xl rounded-bl-md bg-primary/[0.07] px-4 py-3 text-sm leading-relaxed text-primary sm:text-[15px]"
                   }
                 >
                   {msg.role === "assistant" && typingIndex === i ? (
                     <>
                       {msg.content.slice(0, typingChars)}
-                      <span className="ml-px inline-block h-[1.1em] w-[2px] animate-pulse bg-[#6C8494]/60 align-text-bottom" />
+                      <span className="ml-px inline-block h-[1.1em] w-[2px] animate-pulse bg-primary-mid/50 align-text-bottom" />
                     </>
                   ) : (
                     msg.content
@@ -180,7 +180,7 @@ export function AISearchClient() {
             )}
           </div>
 
-          <div className="flex flex-col gap-3 border-t border-[#6C8494]/15 bg-[#f4f7f9] p-4 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
+          <div className="flex flex-col gap-3 border-t border-border bg-background p-4 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
             <Input
               type="text"
               value={input}
@@ -209,8 +209,8 @@ export function AISearchClient() {
           }`}
         >
           <div className="overflow-hidden">
-            <div className="flex flex-col gap-3 rounded-2xl border border-[#6C8494]/25 bg-[#EAF0F4] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-              <p className="text-sm text-[#2C4C5C]">
+            <div className="flex flex-col gap-3 rounded-2xl border border-border bg-primary/[0.06] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+              <p className="text-sm text-primary">
                 Ready when you are. Generate matches from your current answers.
               </p>
               <Button
@@ -218,7 +218,7 @@ export function AISearchClient() {
                 size="lg"
                 onClick={handleShowResults}
                 disabled={resultsLoading || loading}
-                className="w-full shrink-0 rounded-xl bg-[#d4a017] text-[#2C4C5C] hover:bg-[#b88a12] border-[#b88a12] px-6 sm:w-auto"
+                className="w-full shrink-0 rounded-xl border border-accent/40 bg-accent px-6 text-primary hover:brightness-95 sm:w-auto"
               >
                 {resultsLoading ? "Finding vendors…" : "Show me results"}
               </Button>
@@ -228,50 +228,50 @@ export function AISearchClient() {
 
         {/* Error */}
         {error && (
-          <p className="ai-fade-in rounded-xl border border-[#E05A48]/25 bg-[#E05A48]/8 px-4 py-3 text-sm text-[#E05A48]">
+          <p className="ai-fade-in rounded-xl border border-error/30 bg-error/10 px-4 py-3 text-sm text-error">
             {error}
           </p>
         )}
 
         {/* Results */}
         {results && (
-          <section className="ai-fade-in rounded-2xl border border-[#6C8494]/20 bg-white p-5 shadow-sm sm:p-6">
-            <h2 className="text-xl font-semibold text-[#2C4C5C]">
+          <section className="ai-fade-in rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6">
+            <h2 className="text-xl font-semibold text-primary">
               Vendors that match your search
             </h2>
             {resultsSummary && (
-              <p className="mt-2 rounded-xl border border-[#6C8494]/20 bg-[#EAF0F4] px-4 py-3 text-sm text-[#2C4C5C]">
+              <p className="mt-2 rounded-xl border border-border bg-primary/[0.06] px-4 py-3 text-sm text-primary">
                 {resultsSummary}
               </p>
             )}
             <ul className="mt-5 grid gap-4 sm:grid-cols-2">
               {results.length === 0 ? (
-                <li className="rounded-xl border border-[#6C8494]/25 bg-[var(--card)] p-4 text-[#6C8494] sm:col-span-2">
+                <li className="rounded-xl border border-border bg-card p-4 text-muted-foreground sm:col-span-2">
                   No vendors matched. Try broadening your criteria or browse all vendors.
                 </li>
               ) : (
                 results.map((c, idx) => (
                   <li
                     key={c.id}
-                    className="ai-fade-in rounded-xl border border-[#6C8494]/20 bg-white p-4 transition-shadow hover:shadow-sm hover:border-[#6C8494]/40"
+                    className="ai-fade-in rounded-xl border border-border bg-card p-4 transition-shadow hover:border-primary/25 hover:shadow-sm"
                     style={{ animationDelay: `${idx * 60}ms` }}
                   >
                     <Link
                       href={`/companies/${c.slug}`}
-                      className="font-medium text-[#2C4C5C] hover:underline"
+                      className="font-medium text-primary hover:underline"
                     >
                       {c.name}
                     </Link>
                     {(c.category || c.subcategory) && (
-                      <p className="mt-1 text-xs text-[#6C8494]">
+                      <p className="mt-1 text-xs text-muted-foreground">
                         {[c.category, c.subcategory].filter(Boolean).join(" · ")}
                       </p>
                     )}
                     {c.description && (
-                      <p className="mt-2 text-sm text-[#2C4C5C] line-clamp-2">{c.description}</p>
+                      <p className="mt-2 text-sm text-primary line-clamp-2">{c.description}</p>
                     )}
                     {c.matchReason && (
-                      <p className="mt-2 text-xs text-[#6C8494]">{c.matchReason}</p>
+                      <p className="mt-2 text-xs text-muted-foreground">{c.matchReason}</p>
                     )}
                   </li>
                 ))

@@ -30,7 +30,7 @@ export function ConfirmClaimButton({ token }: Props) {
       <Button onClick={handleClick} disabled={isPending}>
         {isPending ? "Claiming…" : "Confirm claim"}
       </Button>
-      {error && <p className="mt-2 text-sm text-[#B4442C]">{error}</p>}
+      {error && <p className="mt-2 text-sm text-error">{error}</p>}
     </div>
   );
 }

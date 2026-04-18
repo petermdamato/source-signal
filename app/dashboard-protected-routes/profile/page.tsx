@@ -21,15 +21,15 @@ export default async function ProfilePage() {
     <div className="mx-auto max-w-2xl px-4 py-10">
       <Link
         href="/dashboard-protected-routes"
-        className="text-sm text-[#6C8494] hover:text-[#2C4C5C] hover:underline transition-colors"
+        className="text-sm text-muted-foreground transition-colors hover:text-primary hover:underline"
       >
         ← Back to dashboard
       </Link>
 
-      <h1 className="mt-4 text-3xl font-bold text-[#2C4C5C]">Profile</h1>
+      <h1 className="mt-4 text-3xl font-bold text-primary">Profile</h1>
       <div className="mt-2 flex flex-wrap items-center gap-2">
-        <span className="text-[#6C8494]">
-          Signed in as <strong className="text-[#2C4C5C]">{user.email}</strong>
+        <span className="text-muted-foreground">
+          Signed in as <strong className="text-primary">{user.email}</strong>
         </span>
         <SignOutButton variant="outline" />
       </div>

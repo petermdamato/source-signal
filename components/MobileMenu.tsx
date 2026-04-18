@@ -12,7 +12,7 @@ export function MobileMenu({ isLoggedIn }: { isLoggedIn: boolean }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex h-10 w-10 items-center justify-center rounded-md text-[#B8BFC1] hover:text-white transition-colors min-[551px]:hidden"
+        className="flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-primary/5 hover:text-primary min-[551px]:hidden"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
       >
@@ -22,26 +22,26 @@ export function MobileMenu({ isLoggedIn }: { isLoggedIn: boolean }) {
       </button>
 
       {open && (
-        <div className="absolute left-0 right-0 top-14 z-50 border-b border-[#1e3642] bg-[#2C4C5C] px-4 pb-4 pt-2 min-[551px]:hidden">
+        <div className="absolute left-0 right-0 top-14 z-50 border-b border-border bg-card px-4 pb-4 pt-2 shadow-lg min-[551px]:hidden">
           <nav className="flex flex-col gap-1">
             <Link
               href="/companies"
               onClick={() => setOpen(false)}
-              className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-[#B8BFC1] hover:bg-[#B8BFC1]/10 hover:text-white transition-colors"
+              className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-primary/[0.06] hover:text-primary"
             >
               Vendors
             </Link>
             <Link
               href="/reviews"
               onClick={() => setOpen(false)}
-              className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-[#B8BFC1] hover:bg-[#B8BFC1]/10 hover:text-white transition-colors"
+              className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-primary/[0.06] hover:text-primary"
             >
               Reviews
             </Link>
             <Link
               href="/dashboard-protected-routes"
               onClick={() => setOpen(false)}
-              className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-[#B8BFC1] hover:bg-[#B8BFC1]/10 hover:text-white transition-colors"
+              className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-primary/[0.06] hover:text-primary"
             >
               Dashboard
             </Link>

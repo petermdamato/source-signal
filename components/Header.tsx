@@ -8,36 +8,34 @@ export async function Header() {
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#2C4C5C]/40 bg-[#2C4C5C]/97 backdrop-blur supports-[backdrop-filter]:bg-[#2C4C5C]/92">
+    <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-[var(--header-bg)] shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-[color-mix(in_srgb,var(--header-bg)_92%,transparent)]">
       <div className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
 
-        {/* Left: hamburger (mobile) + logo */}
         <div className="flex items-center gap-2">
           <MobileMenu isLoggedIn={!!user} />
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-white hover:text-[#d4a017] transition-colors"
+            className="text-xl font-bold tracking-tight text-primary transition-colors hover:text-accent"
           >
             Source Signal
           </Link>
         </div>
 
-        {/* Desktop nav — visible at 551px+ */}
         <nav className="hidden min-[551px]:flex items-center gap-6">
           <Link
             href="/companies"
-            className="text-sm font-medium text-[#B8BFC1] hover:text-white transition-colors"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
             Vendors
           </Link>
           <Link
             href="/reviews"
-            className="text-sm font-medium text-[#B8BFC1] hover:text-white transition-colors"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
             Reviews
           </Link>
           <Link href="/dashboard-protected-routes">
-            <Button variant="outline" size="sm" className="border-[#B8BFC1]/60 text-[#B8BFC1] hover:bg-[#B8BFC1]/15 hover:text-white">
+            <Button variant="outline" size="sm">
               Dashboard
             </Button>
           </Link>
@@ -48,7 +46,6 @@ export async function Header() {
           </Link>
         </nav>
 
-        {/* Mobile sign-in button — right side, hidden at 551px+ */}
         <Link
           href={user ? "/dashboard-protected-routes/profile" : "/login"}
           className="min-[551px]:hidden"

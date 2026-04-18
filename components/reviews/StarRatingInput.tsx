@@ -50,7 +50,7 @@ export function StarRatingInput({
                 onChange(i);
               }}
               onMouseEnter={() => setHoverIndex(i)}
-              className="transition-opacity duration-100 text-[#B4442C] focus:outline-none focus:ring-2 focus:ring-[#456926] focus:ring-offset-1 rounded"
+              className="rounded text-accent transition-opacity duration-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1"
               style={{ opacity }}
               aria-label={`${i} star${i > 1 ? "s" : ""}`}
               aria-pressed={!isNA && i <= starValue}
@@ -68,8 +68,8 @@ export function StarRatingInput({
         }}
         className={`text-sm px-2 py-1 rounded transition-colors ${
           isNA
-            ? "bg-[#546B4C]/30 text-[#233620] font-medium"
-            : "text-[#546B4C] hover:bg-[#ACAEA1]/20"
+            ? "bg-primary-mid/25 text-primary font-medium"
+            : "text-muted-foreground hover:bg-primary-mid/12"
         }`}
         aria-label="Not applicable"
         aria-pressed={isNA}

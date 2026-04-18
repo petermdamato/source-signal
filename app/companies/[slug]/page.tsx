@@ -76,7 +76,7 @@ export default async function CompanyPage({ params }: Props) {
     <div className="mx-auto max-w-6xl px-4 py-10">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
         {company.logo_url ? (
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-[#B8BFC1]/20">
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-primary/5">
             <Image
               src={company.logo_url}
               alt={`${company.name} logo`}
@@ -85,19 +85,19 @@ export default async function CompanyPage({ params }: Props) {
             />
           </div>
         ) : (
-          <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-[#2C4C5C]/10 font-bold text-3xl text-[#2C4C5C]">
+          <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-bold text-3xl text-primary">
             {company.name.charAt(0)}
           </div>
         )}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3 gap-y-1">
-            <h1 className="text-2xl font-bold text-[#2C4C5C] sm:text-3xl">{company.name}</h1>
+            <h1 className="text-2xl font-bold text-primary sm:text-3xl">{company.name}</h1>
             {company.claimed && (
               <span
                 className={
                   user && company.claimed_by_user_id === user.id
-                    ? "inline-flex items-center rounded-md bg-[#2C4C5C] px-2.5 py-0.5 text-xs font-medium text-white"
-                    : "inline-flex items-center rounded-md bg-[#6C8494]/20 px-2.5 py-0.5 text-xs font-medium text-[#6C8494]"
+                    ? "inline-flex items-center rounded-md bg-primary px-2.5 py-0.5 text-xs font-medium text-primary-foreground"
+                    : "inline-flex items-center rounded-md bg-primary-mid/20 px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
                 }
               >
                 {user && company.claimed_by_user_id === user.id ? "CLAIMED BY YOU" : "CLAIMED"}
@@ -105,14 +105,14 @@ export default async function CompanyPage({ params }: Props) {
             )}
           </div>
           {company.description && (
-            <p className="mt-2 text-[#6C8494]">{company.description}</p>
+            <p className="mt-2 text-muted-foreground">{company.description}</p>
           )}
           {company.website_url && (
             <a
               href={company.website_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 rounded-lg border border-[#6C8494]/30 bg-white px-4 py-2 text-sm font-medium text-[#2C4C5C] hover:bg-[#B8BFC1]/20 transition-colors"
+              className="mt-3 inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/[0.04]"
             >
               Visit website
               <span aria-hidden>↗</span>

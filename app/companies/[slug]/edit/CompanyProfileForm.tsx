@@ -96,8 +96,8 @@ export function CompanyProfileForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
       <div>
-        <h2 className="text-lg font-semibold text-[#233620] mb-3">Delivery method</h2>
-        <p className="text-sm text-[#546B4C] mb-3">
+        <h2 className="text-lg font-semibold text-primary mb-3">Delivery method</h2>
+        <p className="text-sm text-muted-foreground mb-3">
           Select all delivery methods this vendor supports.
         </p>
         <MultiselectDropdown
@@ -110,8 +110,8 @@ export function CompanyProfileForm({
       </div>
 
       <div>
-        <label className="block text-lg font-semibold text-[#233620] mb-3">Attributes</label>
-        <p className="text-sm text-[#546B4C] mb-3">
+        <label className="block text-lg font-semibold text-primary mb-3">Attributes</label>
+        <p className="text-sm text-muted-foreground mb-3">
           Choose common attributes or enter your own. Custom entries are shown on the profile but not in search.
         </p>
         <div className="relative">
@@ -119,13 +119,13 @@ export function CompanyProfileForm({
             {attributes.map((a) => (
               <span
                 key={a.id}
-                className="inline-flex items-center gap-1 rounded-md bg-[#456926]/10 px-2.5 py-1 text-sm text-[#233620]"
+                className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2.5 py-1 text-sm text-primary"
               >
                 {a.name}
                 <button
                   type="button"
                   onClick={() => removeAttribute(a.id)}
-                  className="text-[#546B4C] hover:text-[#B4442C] leading-none"
+                  className="text-muted-foreground hover:text-error leading-none"
                   aria-label={`Remove ${a.name}`}
                 >
                   ×
@@ -167,14 +167,14 @@ export function CompanyProfileForm({
           </div>
           {showAttributeDropdown && filteredPublicAttributes.length > 0 && (
             <ul
-              className="absolute z-10 mt-1 w-full max-h-64 overflow-auto rounded-lg border border-[#546B4C]/50 bg-white shadow"
+              className="absolute z-10 mt-1 w-full max-h-64 overflow-auto rounded-lg border border-primary/30 bg-card shadow-md"
               role="listbox"
             >
               {filteredPublicAttributes.slice(0, 50).map((a) => (
                 <li
                   key={a.id}
                   role="option"
-                  className="px-3 py-2 text-sm text-[#233620] hover:bg-[#ACAEA1]/10 cursor-pointer"
+                  className="px-3 py-2 text-sm text-primary hover:bg-primary/5 cursor-pointer"
                   onMouseDown={(e) => {
                     e.preventDefault();
                     addAttributeById(a.id, a.name);
@@ -192,8 +192,8 @@ export function CompanyProfileForm({
         <p
           className={
             message.type === "error"
-              ? "text-sm text-[#B4442C]"
-              : "text-sm text-[#456926]"
+              ? "text-sm text-error"
+              : "text-sm text-primary"
           }
         >
           {message.text}

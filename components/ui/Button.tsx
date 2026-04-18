@@ -9,17 +9,16 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variants = {
   primary:
-    "bg-[#2C4C5C] text-white hover:bg-[#1e3642] border border-[#1e3642]",
+    "bg-primary text-primary-foreground hover:bg-primary-dark border border-primary-dark shadow-sm",
   accent:
-    "bg-[#6C8494] text-white hover:bg-[#4a6070] border border-[#4a6070]",
+    "bg-primary-mid text-primary-foreground hover:brightness-[0.92] border border-primary-dark/30 shadow-sm",
   outline:
-    "border border-[#2C4C5C] text-[#2C4C5C] bg-transparent hover:bg-[#2C4C5C]/10",
-  ghost:
-    "text-[#2C4C5C] hover:bg-[#B8BFC1]/50",
+    "border border-primary/35 text-primary bg-transparent hover:bg-primary/[0.07]",
+  ghost: "text-primary hover:bg-surface/40",
 };
 
 const sizes = {
-  sm: "px-3 py-1.5 text-sm rounded-md",
+  sm: "px-3 py-1.5 text-sm rounded-lg",
   md: "px-4 py-2 text-base rounded-lg",
   lg: "px-6 py-3 text-lg rounded-lg",
 };

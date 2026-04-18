@@ -49,22 +49,22 @@ export function MultiselectDropdown({
         type="button"
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "w-full flex items-center justify-between gap-2 rounded-lg border border-[#546B4C]/50 bg-white px-3 py-2.5 text-left text-sm text-[#233620] hover:bg-[#ACAEA1]/5 focus:outline-none focus:ring-2 focus:ring-[#456926] focus:border-transparent",
+          "flex w-full items-center justify-between gap-2 rounded-lg border border-primary/30 bg-card px-3 py-2.5 text-left text-sm text-primary hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent",
           triggerClassName
         )}
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-label={placeholder}
       >
-        <span className={selectedCount === 0 ? "text-[#ACAEA1]" : ""}>{label}</span>
-        <span className="shrink-0 text-[#546B4C]" aria-hidden>
+        <span className={selectedCount === 0 ? "text-muted-foreground" : ""}>{label}</span>
+        <span className="shrink-0 text-muted-foreground" aria-hidden>
           {open ? "▴" : "▾"}
         </span>
       </button>
       {open && (
         <ul
           role="listbox"
-          className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-lg border border-[#546B4C]/50 bg-white py-1 shadow-lg"
+          className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-lg border border-primary/30 bg-card py-1 shadow-lg"
         >
           {options.map((opt) => (
             <li
@@ -72,8 +72,8 @@ export function MultiselectDropdown({
               role="option"
               aria-selected={selectedIds.has(opt.id)}
               className={cn(
-                "flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-[#ACAEA1]/10",
-                selectedIds.has(opt.id) && "bg-[#456926]/10 text-[#233620]"
+                "flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-primary/5",
+                selectedIds.has(opt.id) && "bg-primary/10 text-primary"
               )}
               onMouseDown={(e) => {
                 e.preventDefault();
@@ -84,8 +84,8 @@ export function MultiselectDropdown({
                 className={cn(
                   "inline-flex h-4 w-4 shrink-0 items-center justify-center rounded border",
                   selectedIds.has(opt.id)
-                    ? "border-[#456926] bg-[#456926] text-white"
-                    : "border-[#546B4C]/50 bg-white"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-primary/30 bg-card"
                 )}
               >
                 {selectedIds.has(opt.id) ? "✓" : null}

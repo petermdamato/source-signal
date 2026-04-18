@@ -82,11 +82,11 @@ function LoginForm() {
     setMessage({ type: "success", text: "Check your email for the confirmation link." });
   }
 
-  const dividerClass = "w-full border-t border-[#6C8494]/25";
-  const dividerTextClass = "bg-[var(--card)] px-2 text-[#6C8494] text-xs uppercase tracking-wider";
-  const mutedTextClass = "text-sm text-[#6C8494]";
-  const linkClass = "font-medium text-[#2C4C5C] hover:underline";
-  const labelClass = "block text-sm font-medium text-[#2C4C5C]";
+  const dividerClass = "w-full border-t border-border";
+  const dividerTextClass = "bg-card px-2 text-xs uppercase tracking-wider text-muted-foreground";
+  const mutedTextClass = "text-sm text-muted-foreground";
+  const linkClass = "font-medium text-primary hover:underline";
+  const labelClass = "block text-sm font-medium text-primary";
 
   return (
     <div className="mx-auto max-w-md px-4 py-10 sm:py-16">
@@ -101,7 +101,7 @@ function LoginForm() {
               </CardHeader>
               <CardContent className="flex flex-1 flex-col">
                 {message && !isSignUp && (
-                  <p className={message.type === "error" ? "text-sm text-[#E05A48]" : "text-sm font-medium text-[#2C4C5C]"}>
+                  <p className={message.type === "error" ? "text-sm text-error" : "text-sm font-medium text-primary"}>
                     {message.text}
                   </p>
                 )}
@@ -145,14 +145,14 @@ function LoginForm() {
               </CardHeader>
               <CardContent className="flex flex-1 flex-col">
                 {message && isSignUp && (
-                  <p className={message.type === "error" ? "text-sm text-[#E05A48]" : "text-sm font-medium text-[#2C4C5C]"}>
+                  <p className={message.type === "error" ? "text-sm text-error" : "text-sm font-medium text-primary"}>
                     {message.text}
                   </p>
                 )}
                 <form onSubmit={handleSignUp} className="flex-1 space-y-4">
                   <div>
                     <label htmlFor="fullName" className={labelClass}>Name</label>
-                    <p className="mt-0.5 text-xs text-[#6C8494]">Your full name will not be displayed.</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">Your full name will not be displayed.</p>
                     <Input id="fullName" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Your name" className="mt-1" />
                   </div>
                   <div>

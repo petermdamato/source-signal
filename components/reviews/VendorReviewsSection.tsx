@@ -58,13 +58,13 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
   if (reviews.length === 0) {
     return (
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-[#2C4C5C]">Reviews</h2>
-        <div className="mt-4 rounded-xl border border-[#6C8494]/25 bg-[var(--card)] p-12 text-center text-[#6C8494]">
+        <h2 className="text-xl font-semibold text-primary">Reviews</h2>
+        <div className="mt-4 rounded-xl border border-border bg-card p-12 text-center text-muted-foreground">
           <p className="font-medium">No reviews yet</p>
           <p className="mt-1 text-sm">Be the first to review this vendor.</p>
           <Link
             href={`/companies/${company.slug}/review`}
-            className="mt-4 inline-block text-sm font-medium text-[#6C8494] hover:text-[#2C4C5C] hover:underline transition-colors"
+            className="mt-4 inline-block text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:underline"
           >
             Write a review →
           </Link>
@@ -75,9 +75,9 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
 
   return (
     <section className="mt-12">
-      <h2 className="text-xl font-semibold text-[#2C4C5C]">Reviews</h2>
+      <h2 className="text-xl font-semibold text-primary">Reviews</h2>
 
-      <div className="mt-6 grid gap-6 rounded-xl border border-[#6C8494]/25 bg-[var(--card)] p-6">
+      <div className="mt-6 grid gap-6 rounded-xl border border-border bg-card p-6">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {[
             { avg: avgRating, label: "Overall", key: "rating" as const },
@@ -87,12 +87,12 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
             { avg: avgValue, label: "Value", key: "value_rating" as const },
           ].map(({ avg, label, key }, i) => (
             <div key={key}>
-              <p className="mb-1 text-xs font-medium uppercase tracking-wider text-[#6C8494]">
+              <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 <RatingLabelWithTooltip label={label} tooltipKey={key} />
               </p>
               <Stars rating={avg} />
               {i === 0 && (
-                <p className="mt-1 text-sm text-[#6C8494]">
+                <p className="mt-1 text-sm text-muted-foreground">
                   {reviews.length} review{reviews.length !== 1 ? "s" : ""}
                 </p>
               )}
@@ -100,22 +100,22 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
           ))}
         </div>
 
-        <div className="border-t border-[#6C8494]/20 pt-4">
-          <p className="mb-2 text-sm font-medium text-[#2C4C5C]">Rating distribution</p>
+        <div className="border-t border-border pt-4">
+          <p className="mb-2 text-sm font-medium text-primary">Rating distribution</p>
           <div className="space-y-2">
             {([5, 4, 3, 2, 1] as const).map((stars) => {
               const count = distribution[stars];
               const pct = totalForDistribution ? (count / totalForDistribution) * 100 : 0;
               return (
                 <div key={stars} className="flex items-center gap-2 text-sm">
-                  <span className="w-16 text-[#6C8494]">{stars} star</span>
-                  <div className="h-2 flex-1 overflow-hidden rounded-full bg-[#B8BFC1]/40">
+                  <span className="w-16 text-muted-foreground">{stars} star</span>
+                  <div className="h-2 flex-1 overflow-hidden rounded-full bg-primary-mid/25">
                     <div
-                      className="h-full rounded-full bg-[#d4a017]"
+                      className="h-full rounded-full bg-accent"
                       style={{ width: `${pct}%` }}
                     />
                   </div>
-                  <span className="w-8 text-right text-[#6C8494]">{count}</span>
+                  <span className="w-8 text-right text-muted-foreground">{count}</span>
                 </div>
               );
             })}
@@ -127,7 +127,7 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
-          className="font-medium text-[#6C8494] hover:text-[#2C4C5C] hover:underline transition-colors"
+          className="font-medium text-muted-foreground transition-colors hover:text-primary hover:underline"
         >
           {expanded ? "Hide reviews" : "Show all reviews"}
         </button>
@@ -147,7 +147,7 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
             </div>
 
             {filteredReviews.length === 0 ? (
-              <p className="text-sm text-[#6C8494]">
+              <p className="text-sm text-muted-foreground">
                 No reviews match &quot;{searchTerm}&quot;.
               </p>
             ) : (

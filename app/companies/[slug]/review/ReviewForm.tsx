@@ -81,19 +81,20 @@ export function ReviewForm({ companyId, companySlug, companyName }: ReviewFormPr
     router.refresh();
   }
 
-  const selectClass = "mt-1 w-full rounded-lg border border-[#6C8494]/40 bg-white px-3 py-2 text-[#2C4C5C] focus:outline-none focus:ring-2 focus:ring-[#6C8494]";
+  const selectClass =
+    "mt-1 w-full rounded-lg border border-primary/25 bg-card px-3 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-ring";
 
   return (
     <Card>
       <CardContent className="p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
-            <p className="text-sm text-[#E05A48]">{error}</p>
+            <p className="text-sm text-error">{error}</p>
           )}
 
           {RATING_LABELS.map(({ key, label, tooltipKey }) => (
             <div key={key}>
-              <label className="block text-sm font-medium text-[#2C4C5C]">
+              <label className="block text-sm font-medium text-primary">
                 <RatingLabelWithTooltip label={label} tooltipKey={tooltipKey} />
               </label>
               <div className="mt-2 text-2xl">
@@ -107,7 +108,7 @@ export function ReviewForm({ companyId, companySlug, companyName }: ReviewFormPr
           ))}
 
           <div>
-            <label htmlFor="found-when" className="block text-sm font-medium text-[#2C4C5C]">
+            <label htmlFor="found-when" className="block text-sm font-medium text-primary">
               I found this {companyName} when I was…
             </label>
             <select
@@ -124,7 +125,7 @@ export function ReviewForm({ companyId, companySlug, companyName }: ReviewFormPr
           </div>
 
           <div>
-            <label htmlFor="result" className="block text-sm font-medium text-[#2C4C5C]">
+            <label htmlFor="result" className="block text-sm font-medium text-primary">
               Result
             </label>
             <select
@@ -141,7 +142,7 @@ export function ReviewForm({ companyId, companySlug, companyName }: ReviewFormPr
           </div>
 
           <div>
-            <label htmlFor="title" className="block text-sm font-medium text-[#2C4C5C]">
+            <label htmlFor="title" className="block text-sm font-medium text-primary">
               Review title
             </label>
             <Input
@@ -154,7 +155,7 @@ export function ReviewForm({ companyId, companySlug, companyName }: ReviewFormPr
             />
           </div>
           <div>
-            <label htmlFor="body" className="block text-sm font-medium text-[#2C4C5C]">
+            <label htmlFor="body" className="block text-sm font-medium text-primary">
               Your review (optional)
             </label>
             <textarea
@@ -163,7 +164,7 @@ export function ReviewForm({ companyId, companySlug, companyName }: ReviewFormPr
               onChange={(e) => setBody(e.target.value)}
               placeholder="Share details that would help others..."
               rows={4}
-              className="mt-1 w-full rounded-lg border border-[#6C8494]/40 bg-white px-3 py-2 text-[#2C4C5C] placeholder:text-[#B8BFC1] focus:outline-none focus:ring-2 focus:ring-[#6C8494]"
+              className="mt-1 w-full rounded-lg border border-primary/25 bg-card px-3 py-2 text-primary placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
           <div className="flex gap-2">
@@ -175,9 +176,9 @@ export function ReviewForm({ companyId, companySlug, companyName }: ReviewFormPr
             </Link>
           </div>
         </form>
-        <p className="mt-4 text-sm text-[#6C8494]">
+        <p className="mt-4 text-sm text-muted-foreground">
           Not signed in?{" "}
-          <Link href="/login" className="text-[#6C8494] font-medium hover:text-[#2C4C5C] hover:underline transition-colors">
+          <Link href="/login" className="text-muted-foreground font-medium hover:text-primary hover:underline transition-colors">
             Sign in to submit
           </Link>
         </p>

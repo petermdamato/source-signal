@@ -7,7 +7,7 @@ export function Input({
   return (
     <input
       className={cn(
-        "w-full px-3 py-2 rounded-lg border border-[#6C8494]/40 bg-white text-[#2C4C5C] placeholder:text-[#B8BFC1] focus:outline-none focus:ring-2 focus:ring-[#6C8494] focus:border-transparent",
+        "w-full rounded-lg border border-primary/25 bg-card px-3 py-2 text-primary placeholder:text-muted-foreground/60 focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-ring",
         className
       )}
       {...props}

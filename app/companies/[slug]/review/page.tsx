@@ -20,11 +20,11 @@ export default async function ReviewPage({ params }: Props) {
     <div className="mx-auto max-w-2xl px-4 py-10">
       <Link
         href={`/companies/${slug}`}
-        className="text-sm text-[#6C8494] hover:text-[#2C4C5C] hover:underline transition-colors"
+        className="text-sm text-muted-foreground hover:text-primary hover:underline transition-colors"
       >
         ← Back to {company.name}
       </Link>
-      <h1 className="mt-4 text-2xl font-bold text-[#2C4C5C]">
+      <h1 className="mt-4 text-2xl font-bold text-primary">
         Write a review for {company.name}
       </h1>
       <div className="mt-8">

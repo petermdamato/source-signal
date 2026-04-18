@@ -19,11 +19,11 @@ export default async function ClaimVerifyPage({ params, searchParams }: Props) {
   if (!tokenInfo.valid) {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <h1 className="text-xl font-semibold text-[#233620]">Invalid or expired link</h1>
-        <p className="mt-2 text-[#546B4C]">{tokenInfo.error}</p>
+        <h1 className="text-xl font-semibold text-primary">Invalid or expired link</h1>
+        <p className="mt-2 text-muted-foreground">{tokenInfo.error}</p>
         <Link
           href={`/companies/${slug}/claim`}
-          className="mt-6 inline-block text-[#456926] hover:underline"
+          className="mt-6 inline-block text-primary hover:underline"
         >
           Request a new verification email
         </Link>
@@ -41,18 +41,18 @@ export default async function ClaimVerifyPage({ params, searchParams }: Props) {
     const verifyUrl = `/companies/${tokenInfo.companySlug}/claim/verify?token=${encodeURIComponent(token)}`;
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <h1 className="text-xl font-semibold text-[#233620]">Sign in to complete your claim</h1>
-        <p className="mt-2 text-[#546B4C]">
+        <h1 className="text-xl font-semibold text-primary">Sign in to complete your claim</h1>
+        <p className="mt-2 text-muted-foreground">
           You must sign in with <strong>{tokenInfo.email}</strong> to claim {tokenInfo.companyName}.
         </p>
         <Link
           href={`/login?redirectTo=${encodeURIComponent(verifyUrl)}`}
-          className="mt-6 inline-block rounded-lg bg-[#456926] px-4 py-2 text-white hover:bg-[#233620]"
+          className="mt-6 inline-block rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary-dark"
         >
           Sign in
         </Link>
         <p className="mt-4">
-          <Link href={`/companies/${tokenInfo.companySlug}`} className="text-sm text-[#546B4C] hover:text-[#456926]">
+          <Link href={`/companies/${tokenInfo.companySlug}`} className="text-sm text-muted-foreground hover:text-primary">
             ← Back to {tokenInfo.companyName}
           </Link>
         </p>
@@ -63,14 +63,14 @@ export default async function ClaimVerifyPage({ params, searchParams }: Props) {
   if (!emailMatches) {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <h1 className="text-xl font-semibold text-[#233620]">Wrong account</h1>
-        <p className="mt-2 text-[#546B4C]">
+        <h1 className="text-xl font-semibold text-primary">Wrong account</h1>
+        <p className="mt-2 text-muted-foreground">
           You’re signed in as <strong>{user.email}</strong>. To claim {tokenInfo.companyName}, sign
           in with <strong>{tokenInfo.email}</strong>.
         </p>
         <Link
           href={`/login?redirectTo=${encodeURIComponent(`/companies/${tokenInfo.companySlug}/claim/verify?token=${encodeURIComponent(token)}`)}`}
-          className="mt-6 inline-block text-[#456926] hover:underline"
+          className="mt-6 inline-block text-primary hover:underline"
         >
           Sign in with {tokenInfo.email}
         </Link>
@@ -80,8 +80,8 @@ export default async function ClaimVerifyPage({ params, searchParams }: Props) {
 
   return (
     <div className="mx-auto max-w-lg px-4 py-16 text-center">
-      <h1 className="text-xl font-semibold text-[#233620]">Confirm your claim</h1>
-      <p className="mt-2 text-[#546B4C]">
+      <h1 className="text-xl font-semibold text-primary">Confirm your claim</h1>
+      <p className="mt-2 text-muted-foreground">
         You’re signed in as {tokenInfo.email}. Click below to claim {tokenInfo.companyName} and become
         the only editor of this profile.
       </p>
@@ -89,7 +89,7 @@ export default async function ClaimVerifyPage({ params, searchParams }: Props) {
         <ConfirmClaimButton token={token} />
       </div>
       <p className="mt-4">
-        <Link href={`/companies/${tokenInfo.companySlug}`} className="text-sm text-[#546B4C] hover:text-[#456926]">
+        <Link href={`/companies/${tokenInfo.companySlug}`} className="text-sm text-muted-foreground hover:text-primary">
           ← Cancel and go back
         </Link>
       </p>

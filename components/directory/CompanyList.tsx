@@ -8,7 +8,7 @@ type CompanyListProps = {
 export function CompanyList({ companies }: CompanyListProps) {
   if (companies.length === 0) {
     return (
-      <div className="rounded-xl border border-[#546B4C]/30 bg-[var(--card)] p-12 text-center text-[#546B4C]">
+      <div className="rounded-xl border border-border bg-[var(--card)] p-12 text-center text-muted-foreground">
         <p className="font-medium">No vendors yet</p>
         <p className="mt-1 text-sm">Check back soon for data vendor listings.</p>
       </div>

@@ -38,10 +38,10 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-[#2C4C5C]">Dashboard</h1>
+      <h1 className="text-3xl font-bold text-primary">Dashboard</h1>
       <div className="mt-2 flex flex-wrap items-center gap-2">
-        <span className="text-[#6C8494]">
-          Signed in as <strong className="text-[#2C4C5C]">{user.email}</strong>
+        <span className="text-muted-foreground">
+          Signed in as <strong className="text-primary">{user.email}</strong>
         </span>
         <SignOutButton variant="outline" />
         <Link href="/dashboard-protected-routes/profile">
@@ -85,7 +85,7 @@ export default async function DashboardPage() {
                     Browse companies
                   </Button>
                 </Link>
-                <p className="text-sm text-[#6C8494]">
+                <p className="text-sm text-muted-foreground">
                   Bookmarked companies will be visible here.
                 </p>
               </>
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
                   <li key={c.id}>
                     <Link
                       href={`/companies/${c.slug}`}
-                      className="flex items-center gap-3 rounded-lg border border-[#6C8494]/20 p-2 hover:bg-[#B8BFC1]/20 transition-colors"
+                      className="flex items-center gap-3 rounded-lg border border-border p-2 transition-colors hover:bg-primary/[0.04]"
                     >
                       {c.logo_url ? (
                         <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded bg-white">
@@ -106,11 +106,11 @@ export default async function DashboardPage() {
                           />
                         </div>
                       ) : (
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-[#2C4C5C]/10 font-bold text-sm text-[#2C4C5C]">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-primary/10 font-bold text-sm text-primary">
                           {c.name.charAt(0)}
                         </div>
                       )}
-                      <span className="truncate font-medium text-[#2C4C5C]">{c.name}</span>
+                      <span className="truncate font-medium text-primary">{c.name}</span>
                     </Link>
                   </li>
                 ))}

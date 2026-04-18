@@ -24,11 +24,11 @@ export function RatingLabelWithTooltip({
       <span>{label}</span>
       {tooltip && (
         <span
-          className="group/tip relative inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#B8BFC1] text-[10px] font-medium text-[#2C4C5C] hover:bg-[#6C8494] hover:text-white transition-colors"
+          className="group/tip relative inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary-mid/25 text-[10px] font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
           aria-label={tooltip}
         >
           ?
-          <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 w-48 -translate-x-1/2 rounded-lg bg-[#2C4C5C] px-2.5 py-2 text-xs font-normal text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover/tip:opacity-100">
+          <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 w-48 -translate-x-1/2 rounded-lg bg-primary px-2.5 py-2 text-xs font-normal text-primary-foreground opacity-0 shadow-lg transition-opacity duration-150 group-hover/tip:opacity-100">
             {tooltip}
           </span>
         </span>

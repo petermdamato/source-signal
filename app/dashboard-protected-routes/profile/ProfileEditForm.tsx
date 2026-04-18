@@ -94,9 +94,9 @@ export function ProfileEditForm() {
       <Card>
         <CardContent className="p-8">
           <div className="animate-pulse space-y-4">
-            <div className="h-4 w-32 rounded bg-[#ACAEA1]/30" />
-            <div className="h-10 w-full rounded bg-[#ACAEA1]/20" />
-            <div className="h-10 w-full rounded bg-[#ACAEA1]/20" />
+            <div className="h-4 w-32 rounded bg-primary-mid/15" />
+            <div className="h-10 w-full rounded bg-primary-mid/12" />
+            <div className="h-10 w-full rounded bg-primary-mid/12" />
           </div>
         </CardContent>
       </Card>
@@ -107,7 +107,7 @@ export function ProfileEditForm() {
     <Card>
       <CardHeader>
         <CardTitle>Edit profile</CardTitle>
-        <p className="text-sm font-normal text-[#546B4C] mt-1">
+        <p className="text-sm font-normal text-muted-foreground mt-1">
           Update your account details. Display name is used when you leave reviews.
         </p>
       </CardHeader>
@@ -117,8 +117,8 @@ export function ProfileEditForm() {
             <p
               className={
                 message.type === "error"
-                  ? "text-sm text-[#B4442C]"
-                  : "text-sm text-[#456926]"
+                  ? "text-sm text-error"
+                  : "text-sm text-primary"
               }
             >
               {message.text}
@@ -126,10 +126,10 @@ export function ProfileEditForm() {
           )}
 
           <div>
-            <label htmlFor="fullName" className="block text-sm font-medium text-[#233620]">
+            <label htmlFor="fullName" className="block text-sm font-medium text-primary">
               Name
             </label>
-            <p className="text-xs text-[#546B4C] mt-0.5">Your full name will not be displayed publicly.</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Your full name will not be displayed publicly.</p>
             <Input
               id="fullName"
               type="text"
@@ -141,7 +141,7 @@ export function ProfileEditForm() {
           </div>
 
           <div>
-            <label htmlFor="industry" className="block text-sm font-medium text-[#233620]">
+            <label htmlFor="industry" className="block text-sm font-medium text-primary">
               Industry
             </label>
             <Input
@@ -155,10 +155,10 @@ export function ProfileEditForm() {
           </div>
 
           <div>
-            <label htmlFor="displayName" className="block text-sm font-medium text-[#233620]">
+            <label htmlFor="displayName" className="block text-sm font-medium text-primary">
               Display name
             </label>
-            <p className="text-xs text-[#546B4C] mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               Shown on your reviews. Leave blank to appear as &quot;A reviewer&quot;.
             </p>
             <Input

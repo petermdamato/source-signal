@@ -40,18 +40,18 @@ export function ClaimNotification() {
 
   return (
     <div
-      className="fixed left-4 right-4 top-20 z-[100] max-w-sm rounded-lg border border-[#6C8494]/30 bg-white p-4 shadow-lg sm:right-auto sm:top-20"
+      className="fixed left-4 right-4 top-20 z-[100] max-w-sm rounded-lg border border-border bg-card p-4 shadow-lg sm:right-auto sm:top-20"
       role="status"
       aria-live="polite"
     >
       <div className="flex items-start gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-[#2C4C5C]">
+          <p className="text-sm font-medium text-primary">
             We have a profile for your company. Do you want to claim it?
           </p>
           <Link
             href={`/companies/${company.slug}/claim`}
-            className="mt-2 inline-block text-sm font-medium text-[#6C8494] hover:text-[#2C4C5C] hover:underline transition-colors"
+            className="mt-2 inline-block text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:underline"
             onClick={handleDismiss}
           >
             Claim {company.name} →
@@ -60,7 +60,7 @@ export function ClaimNotification() {
         <button
           type="button"
           onClick={handleDismiss}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#6C8494] hover:bg-[#B8BFC1]/40 hover:text-[#2C4C5C]"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-primary/5 hover:text-primary"
           aria-label="Dismiss"
         >
           ×

@@ -36,9 +36,9 @@ export function CategoryNav({ className }: CategoryNavProps) {
 
   const linkClass =
     "block rounded-lg px-3 py-2 text-sm font-medium transition-colors";
-  const activeClass = "text-[#d4a017] font-semibold";
+  const activeClass = "font-semibold text-accent";
   const inactiveClass =
-    "text-[#2C4C5C] hover:bg-[#B8BFC1]/40 hover:text-[#d4a017]";
+    "text-primary hover:bg-primary/5 hover:text-accent";
 
   return (
     <nav
@@ -46,7 +46,7 @@ export function CategoryNav({ className }: CategoryNavProps) {
       aria-label="Browse by category"
     >
       <div>
-        <h2 className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#6C8494]">
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Category
         </h2>
         <ul className="space-y-0.5">
@@ -76,7 +76,7 @@ export function CategoryNav({ className }: CategoryNavProps) {
 
       {subcategories.length > 0 && (
         <div>
-          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#6C8494]">
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {activeCategory} – Subcategory
           </h2>
           <ul className="space-y-0.5">
