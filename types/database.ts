@@ -310,6 +310,269 @@ export interface Database {
           },
         ];
       };
+      external_api_clients: {
+        Row: {
+          id: string;
+          name: string;
+          key_sha256: string;
+          key_prefix: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          key_sha256: string;
+          key_prefix: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          key_sha256?: string;
+          key_prefix?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      api_products: {
+        Row: {
+          id: string;
+          company_id: string;
+          name: string;
+          base_url: string | null;
+          docs_url: string | null;
+          auth_type: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          name: string;
+          base_url?: string | null;
+          docs_url?: string | null;
+          auth_type?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          name?: string;
+          base_url?: string | null;
+          docs_url?: string | null;
+          auth_type?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "api_products_company_id_fkey";
+            columns: ["company_id"];
+            isOneToOne: false;
+            referencedRelation: "companies";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      connection_requests: {
+        Row: {
+          id: string;
+          company_id: string;
+          source: string;
+          requester_contact: string | null;
+          requester_note: string | null;
+          metadata: Json;
+          status: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          source?: string;
+          requester_contact?: string | null;
+          requester_note?: string | null;
+          metadata?: Json;
+          status?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          source?: string;
+          requester_contact?: string | null;
+          requester_note?: string | null;
+          metadata?: Json;
+          status?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "connection_requests_company_id_fkey";
+            columns: ["company_id"];
+            isOneToOne: false;
+            referencedRelation: "companies";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      datasets: {
+        Row: {
+          id: string;
+          slug: string;
+          title: string;
+          description: string | null;
+          company_id: string | null;
+          source_url: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          title: string;
+          description?: string | null;
+          company_id?: string | null;
+          source_url?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          title?: string;
+          description?: string | null;
+          company_id?: string | null;
+          source_url?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "datasets_company_id_fkey";
+            columns: ["company_id"];
+            isOneToOne: false;
+            referencedRelation: "companies";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      ai_connectivity_runs: {
+        Row: {
+          id: string;
+          company_id: string;
+          api_product_id: string | null;
+          started_at: string;
+          completed_at: string | null;
+          status: string;
+          agent_version: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          api_product_id?: string | null;
+          started_at?: string;
+          completed_at?: string | null;
+          status?: string;
+          agent_version?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          api_product_id?: string | null;
+          started_at?: string;
+          completed_at?: string | null;
+          status?: string;
+          agent_version?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_connectivity_runs_company_id_fkey";
+            columns: ["company_id"];
+            isOneToOne: false;
+            referencedRelation: "companies";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "ai_connectivity_runs_api_product_id_fkey";
+            columns: ["api_product_id"];
+            isOneToOne: false;
+            referencedRelation: "api_products";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      ai_connectivity_metrics: {
+        Row: {
+          id: string;
+          run_id: string;
+          metric_key: string;
+          numeric_value: number | null;
+          details: Json;
+        };
+        Insert: {
+          id?: string;
+          run_id: string;
+          metric_key: string;
+          numeric_value?: number | null;
+          details?: Json;
+        };
+        Update: {
+          id?: string;
+          run_id?: string;
+          metric_key?: string;
+          numeric_value?: number | null;
+          details?: Json;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_connectivity_metrics_run_id_fkey";
+            columns: ["run_id"];
+            isOneToOne: false;
+            referencedRelation: "ai_connectivity_runs";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      ai_connectivity_scores: {
+        Row: {
+          id: string;
+          company_id: string;
+          api_product_id: string | null;
+          score: number;
+          methodology_version: string;
+          computed_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          api_product_id?: string | null;
+          score: number;
+          methodology_version: string;
+          computed_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          api_product_id?: string | null;
+          score?: number;
+          methodology_version?: string;
+          computed_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ai_connectivity_scores_company_id_fkey";
+            columns: ["company_id"];
+            isOneToOne: false;
+            referencedRelation: "companies";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "ai_connectivity_scores_api_product_id_fkey";
+            columns: ["api_product_id"];
+            isOneToOne: false;
+            referencedRelation: "api_products";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

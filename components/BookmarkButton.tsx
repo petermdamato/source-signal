@@ -42,7 +42,7 @@ export function BookmarkButton({
       >
         {isBookmarked ? (
           <>
-            <span aria-hidden className="text-[#F3E308]">★</span>
+            <span aria-hidden className="text-[#d4a017]">★</span>
             Saved
           </>
         ) : (
@@ -65,7 +65,7 @@ export function BookmarkButton({
       title={isBookmarked ? "Remove bookmark" : "Bookmark company"}
     >
       {isBookmarked ? (
-        <span className="text-[#F3E308]" aria-hidden>★</span>
+        <span className="text-[#d4a017]" aria-hidden>★</span>
       ) : (
         <span className="text-[#B8BFC1]" aria-hidden>☆</span>
       )}

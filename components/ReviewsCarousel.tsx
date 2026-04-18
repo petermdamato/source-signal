@@ -11,7 +11,7 @@ type ReviewWithCompany = Review & {
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <span className="inline-flex gap-0.5 text-[#F3E308]" aria-label={`${rating} out of 5`}>
+    <span className="inline-flex gap-0.5 text-[#d4a017]" aria-label={`${rating} out of 5`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <span key={i}>{i <= rating ? "★" : "☆"}</span>
       ))}

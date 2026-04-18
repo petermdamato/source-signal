@@ -111,7 +111,7 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
                   <span className="w-16 text-[#6C8494]">{stars} star</span>
                   <div className="h-2 flex-1 overflow-hidden rounded-full bg-[#B8BFC1]/40">
                     <div
-                      className="h-full rounded-full bg-[#F3E308]"
+                      className="h-full rounded-full bg-[#d4a017]"
                       style={{ width: `${pct}%` }}
                     />
                   </div>

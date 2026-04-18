@@ -29,7 +29,7 @@ export default async function Home() {
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:py-24 lg:py-32">
           <h1 className="text-3xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             The directory for{" "}
-            <span style={{ color: '#F3E308' }}>data vendor</span> reviews
+            <span style={{ color: '#d4a017' }}>data vendor</span> reviews
           </h1>
           <p className="mt-5 max-w-2xl text-base text-[#B8BFC1] sm:text-lg">
             Discover and compare data providers. Read real reviews from people
@@ -57,7 +57,7 @@ export default async function Home() {
                 className="inline-flex w-full items-center justify-center gap-2 sm:w-auto"
               >
                 Search vendors with AI
-                <SparkleIcon className="h-5 w-5 shrink-0" style={{ fill: '#F3E308' }} />
+                <SparkleIcon className="h-5 w-5 shrink-0" style={{ fill: '#d4a017' }} />
               </Button>
             </Link>
           </div>

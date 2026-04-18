@@ -48,7 +48,7 @@ export function HowItWorksStrip() {
           </div>
 
           <div className="flex flex-col">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F3E308] text-xl font-bold text-[#2C4C5C]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#d4a017] text-xl font-bold text-[#2C4C5C]">
               3
             </div>
             <h3 className="mt-4 text-lg font-semibold text-white">

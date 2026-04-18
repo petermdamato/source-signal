@@ -18,7 +18,7 @@ function HighlightText({ text, term }: { text: string; term: string }) {
     <>
       {parts.map((part, i) =>
         part.toLowerCase() === term.trim().toLowerCase() ? (
-          <mark key={i} className="rounded bg-[#F3E308]/40 px-0.5 text-[#2C4C5C]">
+          <mark key={i} className="rounded bg-[#d4a017]/40 px-0.5 text-[#2C4C5C]">
             {part}
           </mark>
         ) : (

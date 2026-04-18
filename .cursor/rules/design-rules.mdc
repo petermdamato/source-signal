@@ -1,0 +1,29 @@
+---
+description: UI styling — Tailwind v4, CSS tokens, Next.js App Router components
+globs: "**/*.{tsx,css}"
+alwaysApply: false
+---
+
+# Design and UI
+
+## Stack
+
+- **Tailwind CSS v4** with `@import "tailwindcss"`; prefer utility classes and `@theme` tokens over one-off magic values.
+- **Next.js App Router** (`app/`); client components only when interactivity or browser APIs require it.
+
+## Color and typography
+
+- Use **semantic CSS variables** from `app/globals.css` (`:root` and `@theme inline`): primary palette (`--color-primary`, `--color-primary-dark`, `--color-primary-mid`, `--color-surface`, `--color-accent-yellow`, `--color-error`), plus `--background`, `--foreground`, `--card`, `--border`.
+- Prefer `var(--…)` / theme-mapped Tailwind colors over hard-coded hex in new code unless adding a new token in `globals.css`.
+- Body text uses **Geist Sans** (`--font-sans`); monospace uses **Geist Mono** where needed.
+
+## Layout and polish
+
+- Avoid horizontal overflow on small viewports (`overflow-x: hidden` is set on `html, body`); do not reintroduce full-width overflow with fixed-width children.
+- Keep **spacing, type scale, and borders** consistent with existing components (`components/`, `app/`).
+- Respect existing patterns such as **flip-card** auth UI (`.flip-card-*` classes) when touching those surfaces.
+
+## Accessibility
+
+- Interactive elements need visible **focus** states and sufficient **contrast** against `--background` / `--card`.
+- Use semantic HTML (headings, landmarks, labels for form controls).

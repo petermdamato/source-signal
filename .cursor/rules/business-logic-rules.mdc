@@ -1,0 +1,27 @@
+---
+description: Product domain — marketplace, reviews, atlas, and MCP for AI integrations
+alwaysApply: true
+---
+
+# Business logic and product scope
+
+## Core product
+
+- The site hosts **reviews of data providers** and acts as a **marketplace** connecting **data providers** and **data buyers / vendors** (marketplace participants).
+- It is also an **atlas of public data** (discovery and reference for publicly available datasets and sources).
+
+## MCP for AI agents
+
+- Provide an **MCP (Model Context Protocol) server** that AI clients can use to:
+  - **Look up ratings** for data vendors and datasets.
+  - **Use marketplace flows** so agents can **automatically connect to vendors’ APIs** (orchestrated through marketplace capabilities, not ad-hoc bypassing of the platform).
+
+## AI connectivity scoring
+
+- The system should **measure how easily AI agents can integrate** with each vendor’s APIs (documentation quality, auth flows, consistency, errors, etc.).
+- Produce **scores and ratings** derived from that AI-connectivity signal, alongside human-oriented reviews where relevant.
+
+## Implementation guidance
+
+- When adding features, prefer flows that keep **ratings, marketplace connections, and public-data atlas** coherent (single source of truth for vendor/dataset identity where possible).
+- MCP tools should be **safe and explicit** about what is being queried or connected; marketplace-backed connections should respect the same **trust and attribution** as the web product.

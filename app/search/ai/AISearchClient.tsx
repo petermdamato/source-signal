@@ -218,7 +218,7 @@ export function AISearchClient() {
                 size="lg"
                 onClick={handleShowResults}
                 disabled={resultsLoading || loading}
-                className="w-full shrink-0 rounded-xl bg-[#F3E308] text-[#2C4C5C] hover:bg-[#d4c807] border-[#c9bd06] px-6 sm:w-auto"
+                className="w-full shrink-0 rounded-xl bg-[#d4a017] text-[#2C4C5C] hover:bg-[#b88a12] border-[#b88a12] px-6 sm:w-auto"
               >
                 {resultsLoading ? "Finding vendors…" : "Show me results"}
               </Button>

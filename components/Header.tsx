@@ -16,7 +16,7 @@ export async function Header() {
           <MobileMenu isLoggedIn={!!user} />
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-white hover:text-[#F3E308] transition-colors"
+            className="text-xl font-bold tracking-tight text-white hover:text-[#d4a017] transition-colors"
           >
             Source Signal
           </Link>

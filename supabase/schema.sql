@@ -158,3 +158,6 @@ create index if not exists reviews_user_id on public.reviews(user_id);
 create index if not exists companies_slug on public.companies(slug);
 create index if not exists companies_category on public.companies(category);
 create index if not exists companies_subcategory on public.companies(category, subcategory);
+
+-- Marketplace / MCP / AI connectivity: see migration 013_marketplace_mcp_skeleton.sql
+-- (external_api_clients, api_products, connection_requests, datasets, ai_connectivity_*)

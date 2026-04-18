@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 function buildUrl(
   category: string | null,
   subcategory: string | null,
-  searchQuery: string | null
+  searchQuery: string | null,
 ) {
   const params = new URLSearchParams();
   if (category) params.set("category", category);
@@ -34,9 +34,11 @@ export function CategoryNav({ className }: CategoryNavProps) {
       ? CATEGORIES[activeCategory as CategoryName]
       : [];
 
-  const linkClass = "block rounded-lg px-3 py-2 text-sm font-medium transition-colors";
-  const activeClass = "bg-[#F3E308] text-[#2C4C5C] font-semibold";
-  const inactiveClass = "text-[#2C4C5C] hover:bg-[#B8BFC1]/40 hover:text-[#2C4C5C]";
+  const linkClass =
+    "block rounded-lg px-3 py-2 text-sm font-medium transition-colors";
+  const activeClass = "text-[#d4a017] font-semibold";
+  const inactiveClass =
+    "text-[#2C4C5C] hover:bg-[#B8BFC1]/40 hover:text-[#d4a017]";
 
   return (
     <nav
@@ -60,7 +62,10 @@ export function CategoryNav({ className }: CategoryNavProps) {
             <li key={cat}>
               <Link
                 href={buildUrl(cat, null, searchQuery)}
-                className={cn(linkClass, category === cat ? activeClass : inactiveClass)}
+                className={cn(
+                  linkClass,
+                  category === cat ? activeClass : inactiveClass,
+                )}
               >
                 {cat}
               </Link>
@@ -78,7 +83,10 @@ export function CategoryNav({ className }: CategoryNavProps) {
             <li>
               <Link
                 href={buildUrl(activeCategory!, null, searchQuery)}
-                className={cn(linkClass, !subcategory ? activeClass : inactiveClass)}
+                className={cn(
+                  linkClass,
+                  !subcategory ? activeClass : inactiveClass,
+                )}
               >
                 All
               </Link>
@@ -87,7 +95,10 @@ export function CategoryNav({ className }: CategoryNavProps) {
               <li key={sub}>
                 <Link
                   href={buildUrl(activeCategory!, sub, searchQuery)}
-                  className={cn(linkClass, subcategory === sub ? activeClass : inactiveClass)}
+                  className={cn(
+                    linkClass,
+                    subcategory === sub ? activeClass : inactiveClass,
+                  )}
                 >
                   {sub}
                 </Link>
