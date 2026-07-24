@@ -38,7 +38,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-primary">Dashboard</h1>
+      <h1 className="font-display text-3xl font-bold text-primary">Dashboard</h1>
       <div className="mt-2 flex flex-wrap items-center gap-2">
         <span className="text-muted-foreground">
           Signed in as <strong className="text-primary">{user.email}</strong>
@@ -47,6 +47,11 @@ export default async function DashboardPage() {
         <Link href="/dashboard-protected-routes/profile">
           <Button variant="outline" size="sm">
             Edit profile
+          </Button>
+        </Link>
+        <Link href="/dashboard-protected-routes/developers">
+          <Button variant="outline" size="sm">
+            Developer hub
           </Button>
         </Link>
       </div>

@@ -23,6 +23,19 @@ const sizes = {
   lg: "px-6 py-3 text-lg rounded-lg",
 };
 
+export function buttonStyles(
+  variant: keyof typeof variants = "primary",
+  size: keyof typeof sizes = "md",
+  className?: string
+) {
+  return cn(
+    "inline-flex items-center justify-center font-medium transition-colors",
+    variants[variant],
+    sizes[size],
+    className
+  );
+}
+
 export function Button({
   variant = "primary",
   size = "md",
@@ -33,9 +46,8 @@ export function Button({
   return (
     <button
       className={cn(
-        "font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none",
-        variants[variant],
-        sizes[size],
+        buttonStyles(variant, size),
+        "disabled:opacity-50 disabled:pointer-events-none",
         className
       )}
       {...props}

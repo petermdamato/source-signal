@@ -97,7 +97,7 @@ function LoginForm() {
           <div className="flip-card-face">
             <Card className="flex h-full flex-col">
               <CardHeader>
-                <CardTitle>Sign in</CardTitle>
+                <CardTitle className="font-display text-2xl font-bold">Sign in</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-1 flex-col">
                 {message && !isSignUp && (
@@ -138,7 +138,7 @@ function LoginForm() {
           <div className="flip-card-face flip-card-face-back">
             <Card className="flex h-full flex-col">
               <CardHeader>
-                <CardTitle>Sign up</CardTitle>
+                <CardTitle className="font-display text-2xl font-bold">Sign up</CardTitle>
                 <p className={`mt-1 text-sm font-normal ${mutedTextClass}`}>
                   Submit reviews or save vendors for contact.
                 </p>

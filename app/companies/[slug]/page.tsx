@@ -7,6 +7,8 @@ import { VendorReviewsSection } from "@/components/reviews";
 import { DeliveryMethods, DataPoints } from "@/components/company";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { fetchReviewsWithProfiles } from "@/lib/fetch-reviews-with-profiles";
+import { fetchCompanyMarketplaceListing } from "@/lib/fetch-company-marketplace-listing";
+import { VendorViewSwitch } from "@/components/vendor/VendorViewSwitch";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -37,8 +39,10 @@ export default async function CompanyPage({ params }: Props) {
   const deliveryMethodIds = company.delivery_method_ids ?? [];
   const dataAttributeIds = company.data_attribute_ids ?? [];
 
-  const [reviews, bookmarked, user, deliveryMethodsRows, dataAttributesRows] = await Promise.all([
+  const [reviews, marketplaceListing, bookmarked, user, deliveryMethodsRows, dataAttributesRows] =
+    await Promise.all([
     fetchReviewsWithProfiles(supabase, { companyId: company.id }),
+    fetchCompanyMarketplaceListing(supabase, company.id),
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) return false;
       const { data } = await supabase
@@ -74,9 +78,19 @@ export default async function CompanyPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
+      {marketplaceListing && (
+        <div className="mb-6">
+          <VendorViewSwitch
+            companySlug={company.slug}
+            listingSlug={marketplaceListing.slug}
+            active="reviews"
+          />
+        </div>
+      )}
+
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
         {company.logo_url ? (
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-primary/5">
+          <div className="relative h-24 w-24 shrink-0">
             <Image
               src={company.logo_url}
               alt={`${company.name} logo`}
@@ -91,7 +105,7 @@ export default async function CompanyPage({ params }: Props) {
         )}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3 gap-y-1">
-            <h1 className="text-2xl font-bold text-primary sm:text-3xl">{company.name}</h1>
+            <h1 className="font-display text-2xl font-bold text-primary sm:text-3xl">{company.name}</h1>
             {company.claimed && (
               <span
                 className={

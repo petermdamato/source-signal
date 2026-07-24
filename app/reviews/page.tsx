@@ -13,7 +13,7 @@ export default async function ReviewsPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-primary">Reviews</h1>
+      <h1 className="font-display text-3xl font-bold text-primary">Reviews</h1>
       <p className="mt-2 text-muted-foreground">
         Latest community reviews of data vendors.
       </p>

@@ -18,7 +18,7 @@ export default async function ClaimCompanyPage({ params }: Props) {
   if (company.claimed) {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <h1 className="text-xl font-semibold text-primary">Already claimed</h1>
+        <h1 className="font-display text-xl font-semibold text-primary">Already claimed</h1>
         <p className="mt-2 text-muted-foreground">
           This company profile has already been claimed. Only the verified contact can edit it.
         </p>
@@ -32,7 +32,7 @@ export default async function ClaimCompanyPage({ params }: Props) {
   if (!company.website_url?.trim()) {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <h1 className="text-xl font-semibold text-primary">Cannot claim yet</h1>
+        <h1 className="font-display text-xl font-semibold text-primary">Cannot claim yet</h1>
         <p className="mt-2 text-muted-foreground">
           This company does not have a website URL. Add one to the listing first, or contact support.
         </p>
@@ -48,7 +48,7 @@ export default async function ClaimCompanyPage({ params }: Props) {
       <Link href={`/companies/${slug}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
         ← Back to {company.name}
       </Link>
-      <h1 className="mt-6 text-2xl font-bold text-primary">Claim this company</h1>
+      <h1 className="font-display mt-6 text-2xl font-bold text-primary">Claim this company</h1>
       <p className="mt-2 text-muted-foreground">
         Enter a work email address that matches your company&apos;s website domain. We&apos;ll send a
         verification link to confirm you can edit this profile.

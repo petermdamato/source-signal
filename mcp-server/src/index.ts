@@ -3,7 +3,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const baseUrl = (process.env.SOURCE_SIGNAL_API_BASE ?? "http://localhost:3000").replace(/\/$/, "");
-const apiKey = process.env.MARKETPLACE_API_KEY ?? "";
+// Accept either MARKETPLACE_API_KEY (admin/legacy) or SOURCE_SIGNAL_API_KEY (org scoped ss_live_...)
+const apiKey = process.env.SOURCE_SIGNAL_API_KEY ?? process.env.MARKETPLACE_API_KEY ?? "";
 
 async function apiGet(path: string): Promise<unknown> {
   const res = await fetch(`${baseUrl}${path}`, {
@@ -137,9 +138,95 @@ server.registerTool(
   }
 );
 
+// ── Marketplace commerce tools ─────────────────────────────────────────────
+
+server.registerTool(
+  "list_marketplace_listings",
+  {
+    description:
+      "List published marketplace listings. Returns product titles, plans with pricing, fulfillment mode (platform = instant gateway access, vendor_direct = vendor contact required), and company info.",
+    inputSchema: {
+      limit: z.number().int().min(1).max(50).optional().describe("Max results (default 20)"),
+      fulfillment_mode: z
+        .enum(["platform", "vendor_direct"])
+        .optional()
+        .describe("Filter by fulfillment mode"),
+    },
+  },
+  async ({ limit, fulfillment_mode }) => {
+    const params = new URLSearchParams();
+    if (limit != null) params.set("limit", String(limit));
+    if (fulfillment_mode) params.set("fulfillment_mode", fulfillment_mode);
+    const qs = params.toString();
+    const data = await apiGet(`/api/v1/listings${qs ? `?${qs}` : ""}`);
+    return jsonResult(data);
+  }
+);
+
+server.registerTool(
+  "get_marketplace_listing",
+  {
+    description: "Get full details for a marketplace listing by slug, including plans, API product details, and license terms.",
+    inputSchema: { slug: z.string().describe("Listing slug") },
+  },
+  async ({ slug }) => {
+    const data = await apiGet(`/api/v1/listings/${encodeURIComponent(slug)}`);
+    return jsonResult(data);
+  }
+);
+
+server.registerTool(
+  "create_checkout_session",
+  {
+    description:
+      "Create a checkout session to subscribe to a marketplace plan. For platform SKUs with a saved payment method this may activate immediately; otherwise returns a checkout_url for the human to approve. Requires scope 'subscribe'.",
+    inputSchema: {
+      plan_id: z.string().uuid().describe("Plan UUID from list_marketplace_listings"),
+      organization_id: z.string().uuid().describe("Organization UUID to subscribe under"),
+    },
+  },
+  async ({ plan_id, organization_id }) => {
+    const data = await apiPost("/api/v1/checkout-sessions", { plan_id, organization_id });
+    return jsonResult(data);
+  }
+);
+
+server.registerTool(
+  "get_entitlements",
+  {
+    description:
+      "List active entitlements (subscriptions) for an organization. An active entitlement means the org can call the gateway for that listing. Requires scope 'catalog:read'.",
+    inputSchema: {
+      organization_id: z.string().uuid().describe("Organization UUID"),
+    },
+  },
+  async ({ organization_id }) => {
+    const data = await apiGet(`/api/v1/entitlements?organization_id=${encodeURIComponent(organization_id)}`);
+    return jsonResult(data);
+  }
+);
+
+server.registerTool(
+  "get_usage",
+  {
+    description: "Get API usage summary for an organization over the last 30 days. Requires scope 'catalog:read'.",
+    inputSchema: {
+      organization_id: z.string().uuid().describe("Organization UUID"),
+      days: z.number().int().min(1).max(90).optional().describe("Days to look back (default 30)"),
+    },
+  },
+  async ({ organization_id, days = 30 }) => {
+    const params = new URLSearchParams({ organization_id, days: String(days) });
+    const data = await apiGet(`/api/v1/usage?${params.toString()}`);
+    return jsonResult(data);
+  }
+);
+
 async function main() {
   if (!apiKey) {
-    console.error("MARKETPLACE_API_KEY is required.");
+    console.error(
+      "Set SOURCE_SIGNAL_API_KEY (org-scoped ss_live_... key from Developer Hub) or MARKETPLACE_API_KEY (admin key)."
+    );
     process.exit(1);
   }
   const transport = new StdioServerTransport();

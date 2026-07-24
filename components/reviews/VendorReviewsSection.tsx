@@ -90,7 +90,11 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
               <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 <RatingLabelWithTooltip label={label} tooltipKey={key} />
               </p>
-              <Stars rating={avg} />
+              {avg > 0 ? (
+                <Stars rating={avg} />
+              ) : (
+                <span className="text-sm text-muted-foreground/60">No ratings</span>
+              )}
               {i === 0 && (
                 <p className="mt-1 text-sm text-muted-foreground">
                   {reviews.length} review{reviews.length !== 1 ? "s" : ""}
@@ -127,6 +131,7 @@ export function VendorReviewsSection({ company, reviews }: VendorReviewsSectionP
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
           className="font-medium text-muted-foreground transition-colors hover:text-primary hover:underline"
         >
           {expanded ? "Hide reviews" : "Show all reviews"}

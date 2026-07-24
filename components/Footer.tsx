@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href="/"
-            className="text-lg font-semibold text-primary transition-colors hover:text-accent"
+            className="font-display text-lg font-semibold text-primary transition-colors hover:text-accent"
           >
             Source Signal
           </Link>

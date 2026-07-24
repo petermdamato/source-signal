@@ -15,7 +15,7 @@ alwaysApply: false
 
 - Use **semantic CSS variables** from `app/globals.css` (`:root` and `@theme inline`): primary palette (`--color-primary`, `--color-primary-dark`, `--color-primary-mid`, `--color-surface`, `--color-accent-yellow`, `--color-error`), plus `--background`, `--foreground`, `--card`, `--border`.
 - Prefer `var(--…)` / theme-mapped Tailwind colors over hard-coded hex in new code unless adding a new token in `globals.css`.
-- Body text uses **Geist Sans** (`--font-sans`); monospace uses **Geist Mono** where needed.
+- Body and UI use **Plus Jakarta Sans** (`--font-sans`); **Newsreader** via `.font-display` for logo, hero, and major headings only; monospace uses **Space Mono** (`--font-mono`).
 
 ## Layout and polish
 

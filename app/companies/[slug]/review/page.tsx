@@ -24,7 +24,7 @@ export default async function ReviewPage({ params }: Props) {
       >
         ← Back to {company.name}
       </Link>
-      <h1 className="mt-4 text-2xl font-bold text-primary">
+      <h1 className="font-display mt-4 text-2xl font-bold text-primary">
         Write a review for {company.name}
       </h1>
       <div className="mt-8">

@@ -15,7 +15,7 @@ export async function Header() {
           <MobileMenu isLoggedIn={!!user} />
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-primary transition-colors hover:text-accent"
+            className="font-display text-xl font-bold tracking-tight text-primary transition-colors hover:text-accent"
           >
             Source Signal
           </Link>
@@ -33,6 +33,12 @@ export async function Header() {
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
             Reviews
+          </Link>
+          <Link
+            href="/marketplace"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Marketplace
           </Link>
           <Link href="/dashboard-protected-routes">
             <Button variant="outline" size="sm">

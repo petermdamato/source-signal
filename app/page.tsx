@@ -32,7 +32,7 @@ export default async function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Data vendor directory
             </p>
-            <h1 className="mt-3 text-3xl font-bold tracking-tight text-primary text-balance sm:text-5xl md:text-6xl">
+            <h1 className="font-display mt-3 text-3xl font-bold tracking-tight text-primary text-balance sm:text-5xl md:text-6xl">
               The directory for{" "}
               <span className="text-accent">data vendor</span> reviews
             </h1>
@@ -75,6 +75,28 @@ export default async function Home() {
       </section>
 
       <HowItWorksStrip />
+
+      {/* Marketplace CTA */}
+      <section className="mx-auto max-w-6xl px-4 py-12">
+        <div className="rounded-xl border border-border bg-card px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <h2 className="font-display text-xl font-bold text-primary">
+              Data providers: sell through Source Signal
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground max-w-lg">
+              List your API in the marketplace and reach data buyers and AI agents actively purchasing.
+            </p>
+          </div>
+          <div className="flex gap-3 shrink-0">
+            <Link href="/marketplace">
+              <Button variant="outline" size="sm">Browse marketplace</Button>
+            </Link>
+            <Link href="/marketplace/sell">
+              <Button variant="accent" size="sm">Sell your data</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

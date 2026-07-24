@@ -573,6 +573,509 @@ export interface Database {
           },
         ];
       };
+      organizations: {
+        Row: {
+          id: string;
+          name: string;
+          slug: string;
+          stripe_customer_id: string | null;
+          billing_email: string | null;
+          billing_name: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          slug: string;
+          stripe_customer_id?: string | null;
+          billing_email?: string | null;
+          billing_name?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          slug?: string;
+          stripe_customer_id?: string | null;
+          billing_email?: string | null;
+          billing_name?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      org_members: {
+        Row: {
+          id: string;
+          organization_id: string;
+          user_id: string;
+          role: "owner" | "developer" | "billing";
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          user_id: string;
+          role?: "owner" | "developer" | "billing";
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          organization_id?: string;
+          user_id?: string;
+          role?: "owner" | "developer" | "billing";
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "org_members_organization_id_fkey";
+            columns: ["organization_id"];
+            isOneToOne: false;
+            referencedRelation: "organizations";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      org_api_keys: {
+        Row: {
+          id: string;
+          organization_id: string;
+          name: string;
+          key_prefix: string;
+          key_sha256: string;
+          scopes: string[];
+          revoked_at: string | null;
+          last_used_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          name: string;
+          key_prefix: string;
+          key_sha256: string;
+          scopes?: string[];
+          revoked_at?: string | null;
+          last_used_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          organization_id?: string;
+          name?: string;
+          key_prefix?: string;
+          key_sha256?: string;
+          scopes?: string[];
+          revoked_at?: string | null;
+          last_used_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "org_api_keys_organization_id_fkey";
+            columns: ["organization_id"];
+            isOneToOne: false;
+            referencedRelation: "organizations";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      marketplace_listings: {
+        Row: {
+          id: string;
+          slug: string;
+          company_id: string;
+          api_product_id: string | null;
+          dataset_id: string | null;
+          title: string;
+          tagline: string | null;
+          description: string | null;
+          fulfillment_mode: "platform" | "vendor_direct";
+          license_summary: string | null;
+          license_version: string;
+          published: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          company_id: string;
+          api_product_id?: string | null;
+          dataset_id?: string | null;
+          title: string;
+          tagline?: string | null;
+          description?: string | null;
+          fulfillment_mode?: "platform" | "vendor_direct";
+          license_summary?: string | null;
+          license_version?: string;
+          published?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          company_id?: string;
+          api_product_id?: string | null;
+          dataset_id?: string | null;
+          title?: string;
+          tagline?: string | null;
+          description?: string | null;
+          fulfillment_mode?: "platform" | "vendor_direct";
+          license_summary?: string | null;
+          license_version?: string;
+          published?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "marketplace_listings_company_id_fkey";
+            columns: ["company_id"];
+            isOneToOne: false;
+            referencedRelation: "companies";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      marketplace_plans: {
+        Row: {
+          id: string;
+          listing_id: string;
+          name: string;
+          price_cents: number;
+          currency: string;
+          interval: "month" | "year" | "one_time" | "usage" | "free" | null;
+          trial_days: number;
+          quota: Json;
+          stripe_price_id: string | null;
+          active: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          listing_id: string;
+          name: string;
+          price_cents?: number;
+          currency?: string;
+          interval?: "month" | "year" | "one_time" | "usage" | "free" | null;
+          trial_days?: number;
+          quota?: Json;
+          stripe_price_id?: string | null;
+          active?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          listing_id?: string;
+          name?: string;
+          price_cents?: number;
+          currency?: string;
+          interval?: "month" | "year" | "one_time" | "usage" | "free" | null;
+          trial_days?: number;
+          quota?: Json;
+          stripe_price_id?: string | null;
+          active?: boolean;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "marketplace_plans_listing_id_fkey";
+            columns: ["listing_id"];
+            isOneToOne: false;
+            referencedRelation: "marketplace_listings";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      marketplace_topics: {
+        Row: {
+          id: string;
+          slug: string;
+          label: string;
+          description: string | null;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          label: string;
+          description?: string | null;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          label?: string;
+          description?: string | null;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      marketplace_listing_topics: {
+        Row: {
+          listing_id: string;
+          topic_id: string;
+          created_at: string;
+        };
+        Insert: {
+          listing_id: string;
+          topic_id: string;
+          created_at?: string;
+        };
+        Update: {
+          listing_id?: string;
+          topic_id?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "marketplace_listing_topics_listing_id_fkey";
+            columns: ["listing_id"];
+            isOneToOne: false;
+            referencedRelation: "marketplace_listings";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "marketplace_listing_topics_topic_id_fkey";
+            columns: ["topic_id"];
+            isOneToOne: false;
+            referencedRelation: "marketplace_topics";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      subscriptions: {
+        Row: {
+          id: string;
+          organization_id: string;
+          plan_id: string;
+          stripe_subscription_id: string | null;
+          stripe_checkout_session_id: string | null;
+          status: "pending" | "active" | "past_due" | "canceled" | "incomplete";
+          current_period_start: string | null;
+          current_period_end: string | null;
+          canceled_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          plan_id: string;
+          stripe_subscription_id?: string | null;
+          stripe_checkout_session_id?: string | null;
+          status?: "pending" | "active" | "past_due" | "canceled" | "incomplete";
+          current_period_start?: string | null;
+          current_period_end?: string | null;
+          canceled_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          organization_id?: string;
+          plan_id?: string;
+          stripe_subscription_id?: string | null;
+          stripe_checkout_session_id?: string | null;
+          status?: "pending" | "active" | "past_due" | "canceled" | "incomplete";
+          current_period_start?: string | null;
+          current_period_end?: string | null;
+          canceled_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_organization_id_fkey";
+            columns: ["organization_id"];
+            isOneToOne: false;
+            referencedRelation: "organizations";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "subscriptions_plan_id_fkey";
+            columns: ["plan_id"];
+            isOneToOne: false;
+            referencedRelation: "marketplace_plans";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      entitlements: {
+        Row: {
+          id: string;
+          organization_id: string;
+          listing_id: string;
+          subscription_id: string | null;
+          status: "pending_provisioning" | "active" | "suspended" | "revoked";
+          license_accepted_at: string | null;
+          license_version: string | null;
+          expires_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          listing_id: string;
+          subscription_id?: string | null;
+          status?: "pending_provisioning" | "active" | "suspended" | "revoked";
+          license_accepted_at?: string | null;
+          license_version?: string | null;
+          expires_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          organization_id?: string;
+          listing_id?: string;
+          subscription_id?: string | null;
+          status?: "pending_provisioning" | "active" | "suspended" | "revoked";
+          license_accepted_at?: string | null;
+          license_version?: string | null;
+          expires_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "entitlements_organization_id_fkey";
+            columns: ["organization_id"];
+            isOneToOne: false;
+            referencedRelation: "organizations";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "entitlements_listing_id_fkey";
+            columns: ["listing_id"];
+            isOneToOne: false;
+            referencedRelation: "marketplace_listings";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      usage_events: {
+        Row: {
+          id: string;
+          organization_id: string;
+          entitlement_id: string | null;
+          api_key_id: string | null;
+          units: number;
+          event_type: string;
+          metadata: Json;
+          recorded_at: string;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          entitlement_id?: string | null;
+          api_key_id?: string | null;
+          units?: number;
+          event_type?: string;
+          metadata?: Json;
+          recorded_at?: string;
+        };
+        Update: {
+          id?: string;
+          organization_id?: string;
+          entitlement_id?: string | null;
+          api_key_id?: string | null;
+          units?: number;
+          event_type?: string;
+          metadata?: Json;
+          recorded_at?: string;
+        };
+        Relationships: [];
+      };
+      vendor_credentials: {
+        Row: {
+          id: string;
+          api_product_id: string;
+          environment: "sandbox" | "production";
+          credential_type: string;
+          encrypted_value: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          api_product_id: string;
+          environment?: "sandbox" | "production";
+          credential_type?: string;
+          encrypted_value: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          api_product_id?: string;
+          environment?: "sandbox" | "production";
+          credential_type?: string;
+          encrypted_value?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      webhook_events: {
+        Row: {
+          id: string;
+          type: string;
+          processed_at: string;
+          payload: Json;
+        };
+        Insert: {
+          id: string;
+          type: string;
+          processed_at?: string;
+          payload?: Json;
+        };
+        Update: {
+          id?: string;
+          type?: string;
+          processed_at?: string;
+          payload?: Json;
+        };
+        Relationships: [];
+      };
+      vendor_interest_inquiries: {
+        Row: {
+          id: string;
+          company_name: string;
+          contact_email: string;
+          contact_name: string | null;
+          website_url: string | null;
+          description: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_name: string;
+          contact_email: string;
+          contact_name?: string | null;
+          website_url?: string | null;
+          description?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_name?: string;
+          contact_email?: string;
+          contact_name?: string | null;
+          website_url?: string | null;
+          description?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -588,3 +1091,13 @@ export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 export type Review = Database["public"]["Tables"]["reviews"]["Row"];
 export type ReviewWithCompany = Review & { companies: Pick<Company, "name" | "slug"> | null };
 export type ReviewWithProfile = ReviewWithCompany & { profiles: Pick<Profile, "display_name" | "full_name"> | null };
+
+export type Organization = Database["public"]["Tables"]["organizations"]["Row"];
+export type OrgMember = Database["public"]["Tables"]["org_members"]["Row"];
+export type OrgApiKey = Database["public"]["Tables"]["org_api_keys"]["Row"];
+export type MarketplaceListing = Database["public"]["Tables"]["marketplace_listings"]["Row"];
+export type MarketplaceTopic = Database["public"]["Tables"]["marketplace_topics"]["Row"];
+export type MarketplacePlan = Database["public"]["Tables"]["marketplace_plans"]["Row"];
+export type Subscription = Database["public"]["Tables"]["subscriptions"]["Row"];
+export type Entitlement = Database["public"]["Tables"]["entitlements"]["Row"];
+export type UsageEvent = Database["public"]["Tables"]["usage_events"]["Row"];

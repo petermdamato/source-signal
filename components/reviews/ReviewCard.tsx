@@ -72,7 +72,7 @@ export function ReviewCard({
               </span>
             )}
             {review.result && (
-              <span className="rounded-full bg-error/15 px-2 py-0.5 text-xs text-error">
+              <span className="rounded-full bg-primary-mid/15 px-2 py-0.5 text-xs text-primary">
                 {getResultLabel(review.result)}
               </span>
             )}

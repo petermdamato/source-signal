@@ -57,7 +57,7 @@ export default async function CompanyEditPage({ params }: Props) {
           ← Back to {company.name}
         </Link>
       </div>
-      <h1 className="text-2xl font-bold text-primary">Edit company profile</h1>
+      <h1 className="font-display text-2xl font-bold text-primary">Edit company profile</h1>
       <p className="mt-1 text-muted-foreground">{company.name}</p>
       <div className="mt-8">
         <CompanyProfileForm

@@ -26,7 +26,7 @@ export default async function ProfilePage() {
         ← Back to dashboard
       </Link>
 
-      <h1 className="mt-4 text-3xl font-bold text-primary">Profile</h1>
+      <h1 className="font-display mt-4 text-3xl font-bold text-primary">Profile</h1>
       <div className="mt-2 flex flex-wrap items-center gap-2">
         <span className="text-muted-foreground">
           Signed in as <strong className="text-primary">{user.email}</strong>

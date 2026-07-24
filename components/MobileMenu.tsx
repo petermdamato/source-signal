@@ -39,6 +39,13 @@ export function MobileMenu({ isLoggedIn }: { isLoggedIn: boolean }) {
               Reviews
             </Link>
             <Link
+              href="/marketplace"
+              onClick={() => setOpen(false)}
+              className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-primary/[0.06] hover:text-primary"
+            >
+              Marketplace
+            </Link>
+            <Link
               href="/dashboard-protected-routes"
               onClick={() => setOpen(false)}
               className="flex items-center rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-primary/[0.06] hover:text-primary"

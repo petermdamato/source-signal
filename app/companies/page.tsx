@@ -71,7 +71,7 @@ export default async function CompaniesPage({ searchParams }: PageProps) {
         </FilterSidebar>
 
         <div className="min-w-0 flex-1">
-          <h1 className="text-3xl font-bold text-primary">{heading}</h1>
+          <h1 className="font-display text-3xl font-bold text-primary">{heading}</h1>
           <p className="mt-2 text-muted-foreground">{description}</p>
           <div className="mt-6">
             <Suspense fallback={<div className="h-10 rounded-lg bg-primary-mid/15" />}>

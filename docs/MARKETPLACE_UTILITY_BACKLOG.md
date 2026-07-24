@@ -6,11 +6,13 @@ Prioritized improvements to make Source Signal more useful for buyers, vendors, 
 
 1. **Public data atlas (MVP)**  
    - Seed and surface `public.datasets` (browse page, link from vendor profiles, filters).  
-   - Unlocks the “atlas of public data” product line and gives MCP `search`/`datasets` real data later.
+   - Unlocks the “atlas of public data” product line and gives MCP `search`/`datasets` real data later.  
+   - *Progress:* Census (`census-data-api`) and WattBuy (`wattbuy-api`) are live as vendor self-serve marketplace listings with topic tags — first public-data entries, though not yet backed by `datasets` rows.
 
 2. **RFQ / connection follow-through**  
    - When `connection_requests` rows are created (web or `/api/v1`), notify vendor email (Resend) and show status in dashboard.  
-   - Turns the marketplace stub into a measurable funnel.
+   - Turns the marketplace stub into a measurable funnel.  
+   - *Progress:* vendor-direct marketplace checkout (`POST /api/v1/checkout-sessions`) now creates `connection_requests` rows; notification + status UI still open.
 
 ## P1 — Strong second wave
 

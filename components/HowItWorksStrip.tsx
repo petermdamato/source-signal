@@ -10,7 +10,7 @@ export function HowItWorksStrip() {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           How it works
         </p>
-        <h2 className="mt-2 text-center text-2xl font-semibold text-primary text-balance md:text-3xl">
+        <h2 className="font-display mt-2 text-center text-2xl font-semibold text-primary text-balance md:text-3xl">
           How Source Signal works
         </h2>
         <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
