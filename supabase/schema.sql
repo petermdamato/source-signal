@@ -29,6 +29,7 @@ create table if not exists public.companies (
   delivery_method_ids uuid[] default '{}',
   data_attribute_ids uuid[] default '{}',
   claimed boolean not null default false,
+  is_active boolean not null default true,
   claimed_contact text,
   claimed_by_user_id uuid references auth.users(id) on delete set null,
   created_at timestamptz default now(),
@@ -156,6 +157,7 @@ create index if not exists user_bookmarks_user_id on public.user_bookmarks(user_
 create index if not exists reviews_company_id on public.reviews(company_id);
 create index if not exists reviews_user_id on public.reviews(user_id);
 create index if not exists companies_slug on public.companies(slug);
+create index if not exists companies_is_active on public.companies(is_active);
 create index if not exists companies_category on public.companies(category);
 create index if not exists companies_subcategory on public.companies(category, subcategory);
 

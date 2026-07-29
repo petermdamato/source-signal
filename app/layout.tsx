@@ -26,6 +26,9 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "Source Signal – Data vendor reviews",
   description: "Find and review data vendors. The directory for data provider reviews.",
+  icons: {
+    icon: "/source-signal-mark.svg",
+  },
 };
 
 export default function RootLayout({

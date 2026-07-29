@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { SourceSignalLogo } from "@/components/SourceSignalLogo";
 import { Button } from "@/components/ui";
 import { MobileMenu } from "@/components/MobileMenu";
 
@@ -13,12 +14,7 @@ export async function Header() {
 
         <div className="flex items-center gap-2">
           <MobileMenu isLoggedIn={!!user} />
-          <Link
-            href="/"
-            className="font-display text-xl font-bold tracking-tight text-primary transition-colors hover:text-accent"
-          >
-            Source Signal
-          </Link>
+          <SourceSignalLogo linked />
         </div>
 
         <nav className="hidden min-[551px]:flex items-center gap-6">

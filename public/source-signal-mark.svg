@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 72" fill="none" role="img" aria-label="Source Signal" shape-rendering="geometricPrecision">
+  <path d="M32 8 L21 23 L32 23 Z" fill="#b8bfc1"/>
+  <path d="M32 8 L32 23 L43 23 Z" fill="#6c8494"/>
+  <path d="M17 29 L32 29 L32 48 L13 46 Z" fill="#4a6575"/>
+  <path d="M13 46 L32 48 L32 68 L22 58 Z" fill="#3d5666"/>
+  <path d="M32 29 L47 29 L51 46 L32 48 Z" fill="#2c4c5c"/>
+  <path d="M32 48 L51 46 L42 58 L32 68 Z" fill="#1e3642"/>
+</svg>

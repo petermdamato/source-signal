@@ -15,9 +15,15 @@ export async function fetchReviewsWithProfiles(
 ) {
   let query = supabase
     .from("reviews")
-    .select("*, companies(name, slug)")
-    .eq("hidden", false)
-    .order("created_at", { ascending: false });
+    .select("*, companies!inner(name, slug, is_active)")
+    .eq("hidden", false);
+
+  // Public surfaces hide reviews for inactive companies; dashboard keeps the user's own rows.
+  if (!options?.userId) {
+    query = query.eq("companies.is_active", true);
+  }
+
+  query = query.order("created_at", { ascending: false });
 
   if (options?.companyId) {
     query = query.eq("company_id", options.companyId);
@@ -29,7 +35,12 @@ export async function fetchReviewsWithProfiles(
     query = query.limit(options.limit);
   }
 
-  const { data: reviews } = await query;
+  const { data: reviews, error } = await query;
+
+  if (error) {
+    console.error("fetchReviewsWithProfiles:", error.message);
+    return [] as ReviewWithProfile[];
+  }
 
   if (!reviews || reviews.length === 0) {
     return [] as ReviewWithProfile[];

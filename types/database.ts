@@ -82,6 +82,7 @@ export interface Database {
           delivery_method_ids: string[];
           data_attribute_ids: string[];
           claimed: boolean;
+          is_active: boolean;
           claimed_contact: string | null;
           claimed_by_user_id: string | null;
           created_at: string;
@@ -99,6 +100,7 @@ export interface Database {
           delivery_method_ids?: string[];
           data_attribute_ids?: string[];
           claimed?: boolean;
+          is_active?: boolean;
           claimed_contact?: string | null;
           claimed_by_user_id?: string | null;
           created_at?: string;
@@ -116,6 +118,7 @@ export interface Database {
           delivery_method_ids?: string[];
           data_attribute_ids?: string[];
           claimed?: boolean;
+          is_active?: boolean;
           claimed_contact?: string | null;
           claimed_by_user_id?: string | null;
           created_at?: string;

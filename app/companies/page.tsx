@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { createClient } from "@/lib/supabase/server";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 import { CompanyList, CategoryNav, VendorSearch } from "@/components/directory";
 import { FilterSidebar } from "@/components/directory/FilterSidebar";
 import { isCategory, isSubcategoryOf } from "@/lib/categories";
@@ -17,7 +18,7 @@ export default async function CompaniesPage({ searchParams }: PageProps) {
   const { category, subcategory, q: searchQuery } = await searchParams;
 
   const supabase = await createClient();
-  let query = supabase.from("companies").select("*").order("name");
+  let query = activeCompaniesFilter(supabase.from("companies").select("*")).order("name");
 
   if (category && isCategory(category)) {
     query = query.eq("category", category);

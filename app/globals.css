@@ -7,6 +7,7 @@
   --color-primary-mid: #6c8494;
   --color-surface: #b8bfc1;
   --color-accent-yellow: #d4a017;
+  --color-accent-burg: #761e1a;
   --color-error: #e05a48;
   /* Surfaces */
   --background: #eef2f7;
@@ -39,6 +40,7 @@
   --color-surface: var(--color-surface);
   --color-accent: var(--color-accent-yellow);
   --color-accent-yellow: var(--color-accent-yellow);
+  --color-accent-burg: var(--color-accent-burg);
   --color-error: var(--color-error);
   --color-card: var(--card);
   --color-border: var(--border);

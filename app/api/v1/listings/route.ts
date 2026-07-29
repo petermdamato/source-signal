@@ -38,11 +38,12 @@ export async function GET(request: NextRequest) {
     .from("marketplace_listings")
     .select(`
       id, slug, title, tagline, fulfillment_mode, license_summary, license_version, updated_at,
-      companies(id, name, slug, logo_url, category),
+      companies!inner(id, name, slug, logo_url, category, is_active),
       marketplace_plans(id, name, price_cents, currency, interval, trial_days, quota, active),
       ${LISTING_TOPICS_SELECT}
     `)
     .eq("published", true)
+    .eq("companies.is_active", true)
     .order("updated_at", { ascending: false })
     .range(offset, offset + limit - 1);
 

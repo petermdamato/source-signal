@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 import { verifyMarketplaceApiKey, unauthorizedJson, jsonWithRequestId } from "@/lib/marketplace-api-auth";
 
 export async function GET(request: Request) {
@@ -11,11 +12,11 @@ export async function GET(request: Request) {
   const limit = Math.min(50, Math.max(1, Number(url.searchParams.get("limit")) || 20));
 
   const supabase = await createClient();
-  let query = supabase
-    .from("companies")
-    .select("id, name, slug, description, category, subcategory")
-    .order("name")
-    .limit(limit);
+  let query = activeCompaniesFilter(
+    supabase
+      .from("companies")
+      .select("id, name, slug, description, category, subcategory")
+  ).order("name").limit(limit);
 
   if (q) {
     const term = `%${q}%`;

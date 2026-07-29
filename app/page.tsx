@@ -6,15 +6,16 @@ import { ReviewsCarousel } from "@/components/ReviewsCarousel";
 import { NewVendorsRibbon } from "@/components/NewVendorsRibbon";
 import { HowItWorksStrip } from "@/components/HowItWorksStrip";
 import { fetchReviewsWithProfiles } from "@/lib/fetch-reviews-with-profiles";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 
 export default async function Home() {
   const supabase = await createClient();
 
   const [reviewsResult, companiesResult] = await Promise.all([
     fetchReviewsWithProfiles(supabase, { limit: 12 }),
-    supabase
-      .from("companies")
-      .select("*")
+    activeCompaniesFilter(
+      supabase.from("companies").select("*")
+    )
       .order("created_at", { ascending: false })
       .limit(12),
   ]);
@@ -34,7 +35,7 @@ export default async function Home() {
             </p>
             <h1 className="font-display mt-3 text-3xl font-bold tracking-tight text-primary text-balance sm:text-5xl md:text-6xl">
               The directory for{" "}
-              <span className="text-accent">data vendor</span> reviews
+              <span className="text-accent-burg">data vendor</span> reviews
             </h1>
             <p className="home-hero-lead mt-5 max-w-2xl text-base sm:text-lg">
               Discover and compare data providers. Read real reviews from people

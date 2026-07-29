@@ -1,4 +1,5 @@
 import { marketplaceListingLogoUrl } from "@/lib/marketplace-listing-logos";
+import { LogoImage } from "@/components/vendor/LogoImage";
 
 const SIZE_CLASS = {
   sm: "h-9 w-9 text-sm",
@@ -27,11 +28,7 @@ export function MarketplaceListingLogo({
   if (logoUrl) {
     return (
       <div className={`${sizeClass} shrink-0 ${className}`}>
-        <img
-          src={logoUrl}
-          alt={companyName ? `${companyName} logo` : ""}
-          className="h-full w-full object-contain"
-        />
+        <LogoImage src={logoUrl} alt={companyName ? `${companyName} logo` : ""} />
       </div>
     );
   }

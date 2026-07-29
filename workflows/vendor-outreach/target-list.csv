@@ -1,0 +1,2 @@
+company_name,website,docs_url,category,contact_name,contact_email,linkedin,company_slug,source,status,email_1_date,email_2_date,claimed_date,notes
+Example Data Co,https://example.com,https://example.com/docs,Weather,Jane Doe,jane@example.com,https://linkedin.com/in/jane,example-data-co,public-apis,new,,,,

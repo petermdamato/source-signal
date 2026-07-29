@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { Button, Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { ReviewList } from "@/components/reviews";
+import { VendorLogo } from "@/components/vendor/VendorLogo";
 import { SignOutButton } from "./SignOutButton";
 import { fetchReviewsWithProfiles } from "@/lib/fetch-reviews-with-profiles";
 
@@ -25,7 +26,8 @@ export default async function DashboardPage() {
     fetchReviewsWithProfiles(supabase, { userId: user.id }),
     supabase
       .from("user_bookmarks")
-      .select("company_id, companies(id, name, slug, logo_url)")
+      .select("company_id, companies!inner(id, name, slug, logo_url, is_active)")
+      .eq("companies.is_active", true)
       .eq("user_id", user.id)
       .order("created_at", { ascending: false }),
   ]);
@@ -102,19 +104,7 @@ export default async function DashboardPage() {
                       href={`/companies/${c.slug}`}
                       className="flex items-center gap-3 rounded-lg border border-border p-2 transition-colors hover:bg-primary/[0.04]"
                     >
-                      {c.logo_url ? (
-                        <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded bg-white">
-                          <img
-                            src={c.logo_url}
-                            alt=""
-                            className="h-full w-full object-contain"
-                          />
-                        </div>
-                      ) : (
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-primary/10 font-bold text-sm text-primary">
-                          {c.name.charAt(0)}
-                        </div>
-                      )}
+                      <VendorLogo src={c.logo_url} name={c.name} size="sm" />
                       <span className="truncate font-medium text-primary">{c.name}</span>
                     </Link>
                   </li>

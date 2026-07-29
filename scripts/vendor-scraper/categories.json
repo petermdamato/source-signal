@@ -1,0 +1,46 @@
+{
+  "Real Estate": [
+    "Residential",
+    "Commercial",
+    "Industrial",
+    "Land",
+    "Property Management"
+  ],
+  "Healthcare": [
+    "Hospitals & Clinics",
+    "Pharmaceuticals",
+    "Health Insurance",
+    "Medical Devices",
+    "Home Health Care"
+  ],
+  "Technology": [
+    "Software",
+    "Hardware",
+    "Semiconductors",
+    "Telecommunications"
+  ],
+  "Infrastructure": [
+    "Transport",
+    "Utilities",
+    "Urban Development"
+  ],
+  "People": [
+    "Demographics",
+    "Education & Skills",
+    "Income & Wealth Distribution",
+    "Migration & Population Movement",
+    "Public Health"
+  ],
+  "Business": [
+    "Small & Medium Enterprises",
+    "Corporations",
+    "Startups",
+    "Retail & E-commerce",
+    "Manufacturing"
+  ],
+  "Econometrics": [
+    "Indicators",
+    "Forecasts",
+    "Government & Policy"
+  ]
+}

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 import type {
   AISearchCriteria,
   AISearchResultsResponse,
@@ -73,10 +74,9 @@ export async function POST(request: Request) {
       // fall back to a generic sentence if summary generation fails
     }
 
-    const { data: companies } = await supabase
-      .from("companies")
-      .select("id, name, slug, description, category, subcategory")
-      .order("name");
+    const { data: companies } = await activeCompaniesFilter(
+      supabase.from("companies").select("id, name, slug, description, category, subcategory")
+    ).order("name");
 
     if (!companies?.length) {
       const response: AISearchResultsResponse = { assistantSummary, results: [] as CompanySearchResult[] };

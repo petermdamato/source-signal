@@ -36,9 +36,9 @@ export function CategoryNav({ className }: CategoryNavProps) {
 
   const linkClass =
     "block rounded-lg px-3 py-2 text-sm font-medium transition-colors";
-  const activeClass = "font-semibold text-accent";
+  const activeClass = "font-semibold text-accent-burg";
   const inactiveClass =
-    "text-primary hover:bg-primary/5 hover:text-accent";
+    "text-primary hover:bg-primary/5 hover:text-accent-burg";
 
   return (
     <nav

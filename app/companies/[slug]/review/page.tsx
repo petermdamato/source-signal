@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 import { ReviewForm } from "./ReviewForm";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -8,11 +9,9 @@ type Props = { params: Promise<{ slug: string }> };
 export default async function ReviewPage({ params }: Props) {
   const { slug } = await params;
   const supabase = await createClient();
-  const { data: company, error } = await supabase
-    .from("companies")
-    .select("id, name, slug")
-    .eq("slug", slug)
-    .single();
+  const { data: company, error } = await activeCompaniesFilter(
+    supabase.from("companies").select("id, name, slug").eq("slug", slug)
+  ).single();
 
   if (error || !company) notFound();
 

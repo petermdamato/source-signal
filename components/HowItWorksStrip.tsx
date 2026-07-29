@@ -1,5 +1,50 @@
 import Link from "next/link";
 
+const steps = [
+  {
+    href: "/companies",
+    step: "1",
+    stepClassName: "bg-primary/10",
+    title: "Browse & search vendors",
+    body: (
+      <>
+        Search or filter by category to find data vendors. View vendor profiles and read reviews from
+        the community to compare options before you reach out.
+      </>
+    ),
+    cta: "Browse vendors →",
+  },
+  {
+    href: "/login",
+    step: "2",
+    stepClassName: "bg-primary/10",
+    title: "Leave reviews (sign up to contribute)",
+    body: (
+      <>
+        Once you&apos;re signed up, you can leave reviews to help others. We focus on what matters:{" "}
+        <strong className="text-primary">utility of the data</strong>,{" "}
+        <strong className="text-primary">ease of contacting sales and negotiating the sales process</strong>,{" "}
+        <strong className="text-primary">type of data transfer</strong>, and{" "}
+        <strong className="text-primary">quality of the data product for the price</strong>.
+      </>
+    ),
+    cta: "Sign up to review →",
+  },
+  {
+    href: "/dashboard-protected-routes",
+    step: "3",
+    stepClassName: "bg-accent-burg/20",
+    title: "Add vendors to your dashboard",
+    body: (
+      <>
+        Keep track of vendors you care about. Add them to your dashboard so you can quickly return to
+        their profiles, compare notes, and see new reviews.
+      </>
+    ),
+    cta: "Go to dashboard →",
+  },
+] as const;
+
 export function HowItWorksStrip() {
   return (
     <section
@@ -14,63 +59,24 @@ export function HowItWorksStrip() {
           How Source Signal works
         </h2>
         <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
-          <div className="flex flex-col rounded-2xl border border-border bg-background/80 p-6 shadow-sm">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-xl font-bold text-primary">
-              1
-            </div>
-            <h3 className="mt-4 text-lg font-semibold text-primary">
-              Browse &amp; search vendors
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Search or filter by category to find data vendors. View vendor profiles and read reviews from the community to compare options before you reach out.
-            </p>
+          {steps.map((step) => (
             <Link
-              href="/companies"
-              className="mt-4 text-sm font-medium text-primary transition-colors hover:text-accent"
+              key={step.href}
+              href={step.href}
+              className="group flex h-full flex-col rounded-2xl border border-border bg-background/80 p-6 shadow-sm transition-colors hover:border-primary/30 hover:bg-background"
             >
-              Browse vendors →
+              <div
+                className={`flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold text-primary ${step.stepClassName}`}
+              >
+                {step.step}
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-primary">{step.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+              <span className="mt-auto pt-4 text-sm font-medium text-primary transition-colors group-hover:text-accent-burg">
+                {step.cta}
+              </span>
             </Link>
-          </div>
-
-          <div className="flex flex-col rounded-2xl border border-border bg-background/80 p-6 shadow-sm">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-xl font-bold text-primary">
-              2
-            </div>
-            <h3 className="mt-4 text-lg font-semibold text-primary">
-              Leave reviews (sign up to contribute)
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Once you&apos;re signed up, you can leave reviews to help others. We focus on what matters:{" "}
-              <strong className="text-primary">utility of the data</strong>,{" "}
-              <strong className="text-primary">ease of contacting sales and negotiating the sales process</strong>,{" "}
-              <strong className="text-primary">type of data transfer</strong>, and{" "}
-              <strong className="text-primary">quality of the data product for the price</strong>.
-            </p>
-            <Link
-              href="/login"
-              className="mt-4 text-sm font-medium text-primary transition-colors hover:text-accent"
-            >
-              Sign up to review →
-            </Link>
-          </div>
-
-          <div className="flex flex-col rounded-2xl border border-border bg-background/80 p-6 shadow-sm">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/20 text-xl font-bold text-primary">
-              3
-            </div>
-            <h3 className="mt-4 text-lg font-semibold text-primary">
-              Add vendors to your dashboard
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Keep track of vendors you care about. Add them to your dashboard so you can quickly return to their profiles, compare notes, and see new reviews.
-            </p>
-            <Link
-              href="/dashboard-protected-routes"
-              className="mt-4 text-sm font-medium text-primary transition-colors hover:text-accent"
-            >
-              Go to dashboard →
-            </Link>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -48,6 +48,7 @@ export async function POST(request: Request) {
       .from("companies")
       .select("id, name, slug, claimed_contact")
       .eq("slug", companySlug.trim())
+      .eq("is_active", true)
       .maybeSingle();
     company = c;
     resolvedId = c?.id ?? null;
@@ -56,6 +57,7 @@ export async function POST(request: Request) {
       .from("companies")
       .select("id, name, slug, claimed_contact")
       .eq("id", resolvedId)
+      .eq("is_active", true)
       .maybeSingle();
     company = c;
   }

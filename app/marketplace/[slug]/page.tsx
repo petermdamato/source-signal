@@ -74,13 +74,14 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
     .select(`
       id, slug, title, tagline, description, fulfillment_mode,
       license_summary, license_version, updated_at,
-      companies(id, name, slug, logo_url, category, website_url),
+      companies!inner(id, name, slug, logo_url, category, website_url, is_active),
       api_products(id, name, base_url, docs_url, auth_type, connector_type),
       marketplace_plans(id, name, price_cents, currency, interval, trial_days, quota, active),
       ${LISTING_TOPICS_SELECT}
     `)
     .eq("slug", slug)
     .eq("published", true)
+    .eq("companies.is_active", true)
     .single();
 
   const listing = listingRaw as unknown as ListingRow | null;

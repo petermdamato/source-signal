@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 import { Resend } from "resend";
 import { revalidatePath } from "next/cache";
 import crypto from "crypto";
@@ -134,11 +135,13 @@ export async function getUnclaimedCompanyForCurrentUser(): Promise<{
   const emailDomain = user.email.trim().toLowerCase().split("@")[1];
   if (!emailDomain) return null;
 
-  const { data: companies } = await supabase
-    .from("companies")
-    .select("id, name, slug, website_url")
-    .eq("claimed", false)
-    .not("website_url", "is", null);
+  const { data: companies } = await activeCompaniesFilter(
+    supabase
+      .from("companies")
+      .select("id, name, slug, website_url")
+      .eq("claimed", false)
+      .not("website_url", "is", null)
+  );
 
   if (!companies?.length) return null;
   for (const c of companies) {

@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 import { Button } from "@/components/ui";
 import { VendorReviewsSection } from "@/components/reviews";
+import { VendorLogo } from "@/components/vendor/VendorLogo";
 import { DeliveryMethods, DataPoints } from "@/components/company";
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { fetchReviewsWithProfiles } from "@/lib/fetch-reviews-with-profiles";
@@ -15,11 +16,9 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const supabase = await createClient();
-  const { data: company } = await supabase
-    .from("companies")
-    .select("name")
-    .eq("slug", slug)
-    .single();
+  const { data: company } = await activeCompaniesFilter(
+    supabase.from("companies").select("name").eq("slug", slug)
+  ).single();
 
   if (!company) return { title: "Vendor not found" };
   return { title: `${company.name} – Source Signal`, description: `Reviews and info for ${company.name}` };
@@ -34,7 +33,7 @@ export default async function CompanyPage({ params }: Props) {
     .eq("slug", slug)
     .single();
 
-  if (error || !company) notFound();
+  if (error || !company || !company.is_active) notFound();
 
   const deliveryMethodIds = company.delivery_method_ids ?? [];
   const dataAttributeIds = company.data_attribute_ids ?? [];
@@ -89,20 +88,7 @@ export default async function CompanyPage({ params }: Props) {
       )}
 
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
-        {company.logo_url ? (
-          <div className="relative h-24 w-24 shrink-0">
-            <Image
-              src={company.logo_url}
-              alt={`${company.name} logo`}
-              fill
-              className="object-contain"
-            />
-          </div>
-        ) : (
-          <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-bold text-3xl text-primary">
-            {company.name.charAt(0)}
-          </div>
-        )}
+        <VendorLogo src={company.logo_url} name={company.name} size="lg" />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3 gap-y-1">
             <h1 className="font-display text-2xl font-bold text-primary sm:text-3xl">{company.name}</h1>

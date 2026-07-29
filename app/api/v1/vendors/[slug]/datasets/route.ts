@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { activeCompaniesFilter } from "@/lib/companies-active";
 import { verifyMarketplaceApiKey, unauthorizedJson, jsonWithRequestId } from "@/lib/marketplace-api-auth";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -11,11 +12,9 @@ export async function GET(request: Request, { params }: Props) {
   const { slug } = await params;
   const supabase = await createClient();
 
-  const { data: company, error: cErr } = await supabase
-    .from("companies")
-    .select("id")
-    .eq("slug", slug)
-    .maybeSingle();
+  const { data: company, error: cErr } = await activeCompaniesFilter(
+    supabase.from("companies").select("id").eq("slug", slug)
+  ).maybeSingle();
 
   if (cErr) {
     return jsonWithRequestId({ error: cErr.message }, { status: 500 });
